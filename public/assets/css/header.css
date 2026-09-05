@@ -1,0 +1,334 @@
+/* =========================================================
+   NEXAMART HEADER
+========================================================= */
+
+.top-header {
+    width: 100%;
+    background: #c6cfff;
+    border-bottom: 1px solid #eeeeee;
+    position: relative;
+    z-index: 1000;
+}
+.header-wrapper {
+    min-height: 78px;
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+    flex: 0 0 auto;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 105px;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================================
+   SEARCH BOX
+========================================================= */
+
+.search-box {
+    flex: 1;
+    max-width: 600px;
+}
+
+.search-box form {
+    width: 100%;
+     height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #dddddd;
+    border-radius: 25px;
+
+    overflow: hidden;
+    background: #ffffff;
+
+    transition: 0.3s ease;
+}
+
+.search-box form:focus-within {
+    border-color: #00367F;
+    box-shadow: 0 0 0 3px rgba(0, 54, 127, 0.08);
+}
+
+.search-box input {
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+    outline: none;
+
+    padding: 0 20px;
+
+    font-size: 14px;
+    color: #00367F;
+}
+
+.search-box input::placeholder {
+    color: #777777;
+}
+
+.search-box button {
+    width: 74px;
+    height: 100%;
+
+    border: 0;
+
+    background: #00367F;
+    color: #ffffff;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.search-box button:hover {
+    background: #D8001B;
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
+
+.header-right {
+    display: flex;
+    align-items: center;
+
+    gap: 24px;
+
+    flex: 0 0 auto;
+}
+
+.header-right > a {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    color: #00367F;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.3s ease;
+}
+
+.header-right > a i {
+    font-size: 16px;
+}
+
+.header-right > a:hover {
+    color: #D8001B;
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+.cart-link {
+    width: 35px;
+    height: 35px;
+}
+
+.cart-link i {
+    font-size: 17px !important;
+}
+
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+.cart-count {
+    position: absolute;
+
+    top: -5px;
+    right: -6px;
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 5px;
+
+    border-radius: 50%;
+
+    background: #D8001B;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+.header-user{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#003b82;
+    font-weight:600;
+}
+
+.header-logout-form{
+    margin:0;
+    padding:0;
+}
+
+.header-logout-btn{
+    border:0;
+    background:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    color:#e60012;
+    font:inherit;
+    font-weight:600;
+}
+
+.header-logout-btn:hover{
+    opacity:0.8;
+}
+/* =========================================================
+   CUSTOMER HEADER - LOGIN / LOGOUT
+   ========================================================= */
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+    color: #003b82;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.header-user i {
+    font-size: 16px;
+    color: #003b82;
+}
+
+
+/* LOGOUT FORM */
+
+.logout-form {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+
+/* LOGOUT BUTTON */
+
+.header-logout {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    border: none;
+    background: transparent;
+
+    color: #003b82;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 0;
+    margin: 0;
+
+    cursor: pointer;
+}
+
+.header-logout i {
+    font-size: 15px;
+    color: #003b82;
+}
+
+.header-logout:hover {
+    color: #D8001B;
+}
+
+.header-logout:hover i {
+    color: #D8001B
+}
+
+
+/* HEADER RIGHT ALIGNMENT */
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.header-right > a,
+.header-right .header-user,
+.header-right .logout-form {
+    display: flex;
+    align-items: center;
+}
+* CART */
+
+.cart-link {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+
+    min-width: 17px;
+    height: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ff7a00;
+    color: #fff;
+
+    border-radius: 50%;
+
+    font-size: 10px;
+    font-weight: 700;
+}

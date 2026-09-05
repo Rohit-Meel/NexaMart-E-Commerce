@@ -1,0 +1,179 @@
+/* =========================================================
+   NEXAMART NAVBAR
+========================================================= */
+
+.main-navbar {
+    width: 100%;
+    height: 57px;
+
+    background: #00367F;
+
+    position: relative;
+    z-index: 999;
+}
+
+.main-navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-navbar ul {
+    width: 100%;
+    height: 53px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.main-navbar ul li {
+    position: relative;
+}
+
+.main-navbar ul li a {
+    min-height: 53px;
+
+    padding: 0 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    position: relative;
+
+    transition: 0.3s ease;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.main-navbar ul li a:hover {
+    background: rgba(255, 122, 0, 0.18);
+}
+
+
+/* =========================================================
+   BOTTOM LINE
+========================================================= */
+
+.main-navbar ul li a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: #FF7A00;
+
+    transform: translateX(-50%);
+
+    transition: 0.3s ease;
+}
+
+.main-navbar ul li a:hover::after {
+    width: 70%;
+}
+
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.main-navbar ul li.active a {
+    background: rgba(255, 122, 0, 0.15);
+}
+
+.main-navbar ul li.active a::after {
+    width: 70%;
+}
+
+
+/* =========================================================
+   OFFERS
+========================================================= */
+
+.main-navbar ul li.offers-link a {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.main-navbar ul li.offers-link a::after {
+    background: #FF7A00;
+}
+
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+.main-navbar ul li ul {
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    width: 210px;
+    min-height: auto;
+
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow: 0 10px 30px rgba(0, 54, 127, 0.15);
+
+    z-index: 1000;
+}
+
+.main-navbar ul li:hover > ul {
+    display: flex;
+}
+
+.main-navbar ul li ul li {
+    width: 100%;
+}
+
+.main-navbar ul li ul li a {
+    width: 100%;
+    min-height: 45px;
+
+    padding: 0 18px;
+
+    justify-content: flex-start;
+
+    color: #00367F;
+
+    background: #ffffff;
+
+    font-size: 14px;
+}
+
+.main-navbar ul li ul li a:hover {
+    color: #D8001B;
+    background: #ffffff;
+}
+
+.main-navbar ul li ul li a::after {
+    display: none;
+}

@@ -1,0 +1,1074 @@
+/* =========================================================
+   OFFERS PAGE
+========================================================= */
+
+.offers-page {
+    width: 100%;
+    padding: 45px 0 75px;
+    background: #e8eeff;;
+}
+
+.offers-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 65px;
+}
+
+
+/* BREADCRUMB */
+
+.offers-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 25px;
+
+    font-size: 12px;
+}
+
+.offers-breadcrumb a {
+    color: #00367F;
+    text-decoration: none;
+}
+
+.offers-breadcrumb i {
+    color: #FF7A00;
+}
+
+.offers-breadcrumb span {
+    color: #777;
+}
+
+
+/* HEADING */
+
+.offers-heading {
+    margin-bottom: 25px;
+}
+
+.offers-heading span {
+    color: #FF7A00;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.offers-heading h1 {
+    margin: 7px 0;
+
+    color: #00367F;
+
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.offers-heading h1 strong {
+    color: #D8001B;
+}
+
+.offers-heading p {
+    margin: 0;
+
+    color: #888;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   OFFER BANNER
+========================================================= */
+
+.offers-banner {
+    min-height: 230px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+
+    padding: 35px 45px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    background: #00367F;
+
+    border-radius: 9px;
+}
+
+.offers-banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.offers-banner-content > span {
+    color: #FF7A00;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.offers-banner-content h2 {
+    margin: 8px 0;
+
+    color: #ffffff;
+
+    font-size: 32px;
+    line-height: 1.1;
+}
+
+.offers-banner-content p {
+    margin: 0 0 17px;
+
+    color: #DDE5F0;
+
+    font-size: 10px;
+}
+
+.offers-banner-content a {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 17px;
+
+    border-radius: 4px;
+
+    background: #FF7A00;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+.offers-banner-content a:hover {
+    background: #D8001B;
+}
+
+
+/* BIG DISCOUNT */
+
+.offers-banner-side {
+    width: 210px;
+    height: 210px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #FF7A00;
+
+    transform: rotate(-7deg);
+}
+
+.offers-banner-side strong {
+    color: #ffffff;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.offers-banner-side b {
+    color: #ffffff;
+
+    font-size: 58px;
+    line-height: 1;
+}
+
+.offers-banner-side span {
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.offers-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.offers-toolbar h2 {
+    margin: 0 0 4px;
+
+    color: #00367F;
+
+    font-size: 20px;
+}
+
+.offers-toolbar p {
+    margin: 0;
+
+    color: #888;
+
+    font-size: 9px;
+}
+
+.offers-select {
+    height: 40px;
+
+    padding: 0 30px 0 12px;
+
+    border: 1px solid #DDE5F0;
+    border-radius: 5px;
+
+    background: #ffffff;
+
+    color: #00367F;
+
+    font-family: inherit;
+    font-size: 10px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.offers-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* CARD */
+
+.offer-card {
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #DDE5F0;
+    border-radius: 8px;
+
+    transition: .3s;
+}
+
+.offer-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #FF7A00;
+
+    box-shadow:
+        0 10px 25px rgba(0, 54, 127, .08);
+}
+
+
+/* IMAGE */
+
+.offer-image {
+    position: relative;
+
+    width: 100%;
+    height: 190px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #F5F8FF;
+}
+
+.offer-placeholder {
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #00367F;
+
+    font-size: 34px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 54, 127, .08);
+}
+
+
+/* BADGE */
+
+.offer-badge {
+    position: absolute;
+
+    top: 12px;
+    left: 12px;
+
+    padding: 6px 9px;
+
+    border-radius: 3px;
+
+    background: #D8001B;
+    color: #ffffff;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+
+/* INFO */
+
+.offer-info {
+    padding: 17px;
+}
+
+.offer-category {
+    color: #FF7A00;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.offer-info h3 {
+    margin: 6px 0 10px;
+
+    color: #00367F;
+
+    font-size: 14px;
+}
+
+
+/* PRICE */
+
+.offer-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 11px;
+}
+
+.offer-price strong {
+    color: #00367F;
+
+    font-size: 17px;
+}
+
+.offer-price del {
+    color: #999;
+
+    font-size: 9px;
+}
+
+
+/* CODE */
+
+.offer-code {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 14px;
+
+    font-size: 9px;
+}
+
+.offer-code span {
+    color: #888;
+}
+
+.offer-code b {
+    padding: 4px 7px;
+
+    border: 1px dashed #FF7A00;
+    border-radius: 3px;
+
+    background: #FFF8F1;
+
+    color: #D8001B;
+
+    font-size: 8px;
+}
+
+
+/* SHOP DEAL */
+
+.offer-info > a {
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: 1px solid #00367F;
+    border-radius: 4px;
+
+    color: #00367F;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+.offer-info > a:hover {
+    background: #00367F;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.offers-cta {
+    margin-top: 30px;
+
+    padding: 28px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    background: #00367F;
+
+    border-radius: 8px;
+}
+
+.offers-cta span {
+    color: #FF7A00;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+.offers-cta h2 {
+    margin: 6px 0;
+
+    color: #ffffff;
+
+    font-size: 19px;
+}
+
+.offers-cta p {
+    margin: 0;
+
+    color: #DDE5F0;
+
+    font-size: 10px;
+}
+
+.offers-cta a {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px 17px;
+
+    border-radius: 5px;
+
+    background: #FF7A00;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+.offers-cta a:hover {
+    background: #D8001B;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .offers-container {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .offers-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .offers-banner {
+        padding: 30px;
+
+    }
+
+    .offers-banner-side {
+        width: 160px;
+        height: 160px;
+    }
+
+    .offers-banner-side b {
+        font-size: 45px;
+    }
+
+    .offers-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .offers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .offers-cta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .offers-container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .offers-heading h1 {
+        font-size: 29px;
+    }
+
+    .offers-banner {
+        min-height: 300px;
+
+        padding: 25px;
+
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .offers-banner-content h2 {
+        font-size: 27px;
+    }
+
+    .offers-banner-side {
+        width: 120px;
+        height: 120px;
+
+        align-self: flex-end;
+
+        margin-top: -45px;
+    }
+
+    .offers-banner-side b {
+        font-size: 32px;
+    }
+
+    .offers-banner-side strong {
+        font-size: 7px;
+    }
+
+    .offers-banner-side span {
+        font-size: 11px;
+    }
+
+    .offers-cta {
+        padding: 22px;
+    }
+
+    .offers-cta h2 {
+        font-size: 17px;
+    }
+
+}
+
+
+
+
+
+/* =========================================================
+   OFFER PRODUCT ACTIONS
+========================================================= */
+
+.offer-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+
+/* =========================================================
+   WISHLIST BUTTON
+========================================================= */
+
+.offer-wishlist-form {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+}
+
+.offer-wishlist-btn {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #003f88;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    transition: all 0.25s ease;
+}
+
+.offer-wishlist-btn:hover {
+    background: #D8001B;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.offer-wishlist-btn.active {
+    color: #D8001B;
+}
+
+.offer-wishlist-btn.active:hover {
+    background: #D8001B;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+.offer-cart-form {
+    margin: 0;
+}
+
+.offer-cart-btn {
+    min-width: 45px;
+    height: 40px;
+    padding: 0 13px;
+    border: 1px solid #003f88;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #003f88;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.25s ease;
+}
+
+.offer-cart-btn:hover {
+    background: #003f88;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.offer-cart-btn i {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   BUY NOW
+========================================================= */
+
+.offer-buy-form {
+    margin: 0;
+    flex: 1;
+}
+.offer-buy-form {
+    margin: 0;
+    flex: 1;
+    display: flex;
+}
+
+.offer-buy-btn {
+    width: 100%;
+    height: 42px;
+    border: none;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 15px;
+    margin: 0;
+
+    text-decoration: none !important;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.offer-buy-btn {
+    width: 100%;
+    height: 40px;
+    padding: 0 16px;
+    border: 1px solid #ff7a00;
+    border-radius: 5px;
+    background: #ff7a00;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.offer-buy-btn:hover {
+    background: #e86d00;
+    border-color: #e86d00;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SHOP DEAL
+========================================================= */
+
+.offer-deal-btn {
+    width: 100%;
+    height: 38px;
+    margin-top: 9px;
+    border: 1px solid #003f88;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #003f88;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.offer-deal-btn:hover {
+    background: #003f88;
+    color: #ffffff;
+}
+
+.offer-deal-btn i {
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   OFFER BRAND
+========================================================= */
+
+.offer-brand {
+    display: block;
+    margin-top: 4px;
+    color: #555555;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+.offer-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 7px;
+}
+
+.offer-rating span {
+    color: #ff7a00;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.offer-rating small {
+    color: #777777;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   COUPONS
+========================================================= */
+
+.offers-coupons {
+    margin-top: 45px;
+}
+
+.offers-coupons-heading span {
+    color: #ff7a00;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.offers-coupons-heading h2 {
+    margin: 5px 0;
+    color: #003f88;
+}
+
+.offers-coupons-heading h2 strong {
+    color: #ff7a00;
+}
+
+.offers-coupons-heading p {
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.offers-coupons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.offer-coupon-card {
+    background: #ffffff;
+    border: 1px solid #e2e7f0;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.offer-coupon-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    background: #003f88;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offer-coupon-info {
+    flex: 1;
+}
+
+.offer-coupon-info h3 {
+    margin: 0;
+    color: #003f88;
+    font-size: 16px;
+}
+
+.offer-coupon-info p {
+    margin: 4px 0;
+    color: #555555;
+    font-size: 12px;
+}
+
+.offer-coupon-info small {
+    color: #777777;
+    font-size: 11px;
+}
+
+.offer-copy-btn {
+    border: 1px solid #003f88;
+    background: #ffffff;
+    color: #003f88;
+    border-radius: 5px;
+    padding: 7px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.25s ease;
+}
+
+.offer-copy-btn:hover {
+    background: #003f88;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.offer-ajax-toast {
+    position: fixed;
+    top: 85px;
+    right: 25px;
+    z-index: 99999;
+
+    min-width: 280px;
+    max-width: 380px;
+
+    padding: 13px 18px;
+
+    border-radius: 7px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+
+    transform: translateX(120%);
+    opacity: 0;
+
+    transition: all 0.35s ease;
+}
+
+.offer-ajax-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.offer-ajax-toast.success {
+    background: #20a65a;
+}
+
+.offer-ajax-toast.error {
+    background: #dc3545;
+}
+
+.offer-ajax-toast i {
+    font-size: 17px;
+}
+
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .offers-coupons-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .offer-actions {
+        gap: 6px;
+    }
+
+    .offer-buy-btn {
+        padding: 0 10px;
+    }
+
+    .offer-ajax-toast {
+        left: 15px;
+        right: 15px;
+        top: 75px;
+        min-width: auto;
+    }
+
+}
+
+/* =========================================
+   OFFERS PAGE WISHLIST
+========================================= */
+
+.offer-wishlist-form {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    z-index: 20;
+
+    display: block;
+}
+
+.offer-wishlist-btn {
+    width: 40px;
+    height: 40px;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: none !important;
+    outline: none !important;
+
+    border-radius: 50%;
+
+    text-decoration: none !important;
+    line-height: 1 !important;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.offer-wishlist-btn i {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    line-height: 1 !important;
+    text-decoration: none !important;
+}
