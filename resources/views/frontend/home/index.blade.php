@@ -35,10 +35,78 @@
 
 
 <!-- =========================================================
-     HOME HERO
+     HOME HERO / BANNER SLIDER
 ========================================================= -->
 
+@if($banners->count())
+
 <section class="home-hero">
+
+    <div class="home-banner-slider">
+
+        @foreach($banners as $index => $banner)
+
+        <div
+            class="home-banner-slide {{ $index === 0 ? 'active' : '' }}"
+            data-slide="{{ $index }}">
+
+            <img
+                src="{{ asset('assets/images/banners/' . $banner->image) }}"
+                alt="{{ $banner->title }}">
+
+        </div>
+
+        @endforeach
+
+    </div>
+
+
+    @if($banners->count() > 1)
+
+    <!-- Previous -->
+    <button
+        type="button"
+        class="home-banner-arrow home-banner-prev"
+        aria-label="Previous Banner">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+
+    <!-- Next -->
+    <button
+        type="button"
+        class="home-banner-arrow home-banner-next"
+        aria-label="Next Banner">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+
+    <!-- Dots -->
+    <div class="home-banner-dots">
+
+        @foreach($banners as $index => $banner)
+
+        <button
+            type="button"
+            class="home-banner-dot {{ $index === 0 ? 'active' : '' }}"
+            data-slide="{{ $index }}"
+            aria-label="Go to banner {{ $index + 1 }}"></button>
+
+        @endforeach
+
+    </div>
+
+    @endif
+
+</section>
+
+@else
+
+<!-- =====================================================
+         FALLBACK HERO
+    ====================================================== -->
+
+<section class="home-hero home-hero-fallback">
 
     <div class="home-hero-inner">
 
@@ -78,7 +146,6 @@
 
         </div>
 
-
         <div class="home-hero-image">
 
             <img
@@ -90,6 +157,8 @@
     </div>
 
 </section>
+
+@endif
 
 
 <!-- =========================================================
@@ -312,7 +381,7 @@
 
                     {{-- PRODUCT IMAGE --}}
 
-                    <a href="{{ route('products') }}">
+                    <a href="{{ route('product.show', $product->slug) }}" class="product-image-link">
 
                         @if($product->thumbnail)
 
@@ -427,20 +496,11 @@
 
                             @auth('customer')
 
-                            <form
-                                action="{{ route('buy.now', $product->id) }}"
-                                method="POST"
-                                class="home-buy-form">
-
-                                @csrf
-
-                                <button
-                                    type="submit"
-                                    class="buy-now-btn">
-                                    Buy Now
-                                </button>
-
-                            </form>
+                            <a
+                                href="{{ route('product.show', $product->slug) }}"
+                                class="buy-now-btn">
+                                Buy Now
+                            </a>
 
                             @else
 
@@ -665,18 +725,27 @@
 
                     @endauth
 
+                    {{-- PRODUCT IMAGE --}}
 
                     @if($product->thumbnail)
 
-                    <img
-                       src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
-                        alt="{{ $product->name }}">
+                    <a
+                        href="{{ route('product.show', $product->slug) }}"
+                        class="shop-product-image-link">
+                        <img
+                            src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
+                            alt="{{ $product->name }}">
+                    </a>
 
                     @else
 
-                    <img
-                        src="{{ asset('assets/images/logo/banner.png') }}"
-                        alt="{{ $product->name }}">
+                    <a
+                        href="{{ route('product.show', $product->slug) }}"
+                        class="shop-product-image-link">
+                        <img
+                            src="{{ asset('assets/images/logo/banner.png') }}"
+                            alt="{{ $product->name }}">
+                    </a>
 
                     @endif
 
@@ -775,26 +844,17 @@
                             {{-- BUY NOW --}}
 
                             @auth('customer')
-
-                            <form
-                                action="{{ route('buy.now', $product->id) }}"
-                                method="POST">
-
-                                @csrf
-
-                                <button
-                                    type="submit"
-                                    class="latest-buy-btn">
-                                    Buy Now
-                                </button>
-
-                            </form>
+                            <a
+                                href="{{ route('product.show', $product->slug) }}"
+                                class="buy-now-btn">
+                                Buy Now
+                            </a>
 
                             @else
 
                             <a
                                 href="{{ route('login') }}"
-                                class="latest-buy-btn">
+                                class="buy-now-btn">
                                 Buy Now
                             </a>
 
@@ -860,7 +920,7 @@
                 href="{{ route('products', ['brand' => $brand->slug]) }}"
                 class="brand-card">
 
-                 <div class="brand-logo">
+                <div class="brand-logo">
 
                     @if($brand->logo)
 
@@ -1020,9 +1080,9 @@
         toast.className =
             'home-ajax-toast ' +
             (
-                type === 'success'
-                    ? 'success'
-                    : 'error'
+                type === 'success' ?
+                'success' :
+                'error'
             );
 
         toast.innerHTML = `
@@ -1039,17 +1099,17 @@
 
         document.body.appendChild(toast);
 
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function() {
 
             toast.classList.add('show');
 
         });
 
-        setTimeout(function () {
+        setTimeout(function() {
 
             toast.classList.remove('show');
 
-            setTimeout(function () {
+            setTimeout(function() {
 
                 toast.remove();
 
@@ -1073,7 +1133,7 @@
 
         newsletterForm.addEventListener(
             'submit',
-            async function (event) {
+            async function(event) {
 
                 event.preventDefault();
 
@@ -1117,28 +1177,23 @@
                     }
 
                     const response = await fetch(
-                        newsletterForm.action,
-                        {
+                        newsletterForm.action, {
                             method: 'POST',
 
                             headers: {
 
-                                'X-CSRF-TOKEN':
-                                    csrfToken.getAttribute(
-                                        'content'
-                                    ),
+                                'X-CSRF-TOKEN': csrfToken.getAttribute(
+                                    'content'
+                                ),
 
-                                'Accept':
-                                    'application/json',
+                                'Accept': 'application/json',
 
-                                'X-Requested-With':
-                                    'XMLHttpRequest'
+                                'X-Requested-With': 'XMLHttpRequest'
                             },
 
-                            body:
-                                new FormData(
-                                    newsletterForm
-                                )
+                            body: new FormData(
+                                newsletterForm
+                            )
                         }
                     );
 
@@ -1185,7 +1240,7 @@
                         '<i class="fa-solid fa-check"></i> Subscribed';
 
 
-                    setTimeout(function () {
+                    setTimeout(function() {
 
                         button.innerHTML =
                             originalHTML;
@@ -1229,8 +1284,6 @@
         );
 
     }
-
-
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1756,7 +1809,139 @@
         }
 
     });
-    
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const slides = document.querySelectorAll('.home-banner-slide');
+        const dots = document.querySelectorAll('.home-banner-dot');
+
+        const prevButton = document.querySelector('.home-banner-prev');
+        const nextButton = document.querySelector('.home-banner-next');
+
+        if (!slides.length) {
+            return;
+        }
+
+        let currentSlide = 0;
+        let autoSlide;
+
+
+        function showSlide(index) {
+
+            if (index >= slides.length) {
+                index = 0;
+            }
+
+            if (index < 0) {
+                index = slides.length - 1;
+            }
+
+            currentSlide = index;
+
+
+            slides.forEach(function(slide, slideIndex) {
+
+                slide.classList.toggle(
+                    'active',
+                    slideIndex === currentSlide
+                );
+
+            });
+
+
+            dots.forEach(function(dot, dotIndex) {
+
+                dot.classList.toggle(
+                    'active',
+                    dotIndex === currentSlide
+                );
+
+            });
+
+        }
+
+
+        function nextSlide() {
+
+            showSlide(currentSlide + 1);
+
+        }
+
+
+        function previousSlide() {
+
+            showSlide(currentSlide - 1);
+
+        }
+
+
+        function startAutoSlide() {
+
+            if (slides.length > 1) {
+
+                autoSlide = setInterval(function() {
+
+                    nextSlide();
+
+                }, 5000);
+
+            }
+
+        }
+
+
+        function resetAutoSlide() {
+
+            clearInterval(autoSlide);
+
+            startAutoSlide();
+
+        }
+
+
+        if (nextButton) {
+
+            nextButton.addEventListener('click', function() {
+
+                nextSlide();
+
+                resetAutoSlide();
+
+            });
+
+        }
+
+
+        if (prevButton) {
+
+            prevButton.addEventListener('click', function() {
+
+                previousSlide();
+
+                resetAutoSlide();
+
+            });
+
+        }
+
+
+        dots.forEach(function(dot, index) {
+
+            dot.addEventListener('click', function() {
+
+                showSlide(index);
+
+                resetAutoSlide();
+
+            });
+
+        });
+
+
+        showSlide(0);
+
+        startAutoSlide();
+
+    });
 </script>
 
 @endsection

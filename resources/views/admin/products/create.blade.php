@@ -158,6 +158,39 @@ textarea.product-control {
     color:#374151;
 }
 
+
+/* Product Image Upload */
+
+.product-image-help {
+    font-size:11px;
+    color:#6b7280;
+    margin-top:6px;
+}
+
+.product-image-preview {
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:15px;
+}
+
+.product-preview-item {
+    width:90px;
+    height:90px;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.product-preview-item img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+
 @media(max-width:700px) {
 
     .product-grid {
@@ -202,6 +235,8 @@ textarea.product-control {
 
         @csrf
 
+
+        {{-- PRODUCT INFORMATION --}}
 
         <div class="product-section">
             Product Information
@@ -266,10 +301,16 @@ textarea.product-control {
                     placeholder="Enter product description"
                 >{{ old('description') }}</textarea>
 
+                @error('description')
+                    <div class="product-error">{{ $message }}</div>
+                @enderror
+
             </div>
 
         </div>
 
+
+        {{-- CATEGORY --}}
 
         <div class="product-section">
             Category & Ownership
@@ -409,6 +450,8 @@ textarea.product-control {
         </div>
 
 
+        {{-- PRICE --}}
+
         <div class="product-section">
             Pricing & Stock
         </div>
@@ -433,6 +476,10 @@ textarea.product-control {
                     required
                 >
 
+                @error('price')
+                    <div class="product-error">{{ $message }}</div>
+                @enderror
+
             </div>
 
 
@@ -452,6 +499,10 @@ textarea.product-control {
                     placeholder="0.00"
                 >
 
+                @error('sale_price')
+                    <div class="product-error">{{ $message }}</div>
+                @enderror
+
             </div>
 
 
@@ -470,13 +521,19 @@ textarea.product-control {
                     required
                 >
 
+                @error('stock')
+                    <div class="product-error">{{ $message }}</div>
+                @enderror
+
             </div>
 
         </div>
 
 
+        {{-- PRODUCT IMAGES --}}
+
         <div class="product-section">
-            Product Image
+            Product Images
         </div>
 
 
@@ -493,16 +550,60 @@ textarea.product-control {
                 accept=".jpg,.jpeg,.png,.webp"
             >
 
-            <div style="font-size:11px;color:#6b7280;margin-top:6px;">
-                JPG, JPEG, PNG, WEBP — Maximum 2MB
+            <div class="product-image-help">
+                Main product image — JPG, JPEG, PNG, WEBP — Maximum 2MB
             </div>
 
             @error('thumbnail')
-                <div class="product-error">{{ $message }}</div>
+                <div class="product-error">
+                    {{ $message }}
+                </div>
             @enderror
 
         </div>
 
+
+        <div class="product-group">
+
+            <label>
+                Additional Product Images
+            </label>
+
+            <input
+                type="file"
+                id="productImages"
+                name="images[]"
+                class="product-control product-file"
+                accept=".jpg,.jpeg,.png,.webp"
+                multiple
+            >
+
+            <div class="product-image-help">
+                Select multiple images for this product. Maximum 10 images, 2MB each.
+            </div>
+
+            @error('images')
+                <div class="product-error">
+                    {{ $message }}
+                </div>
+            @enderror
+
+            @error('images.*')
+                <div class="product-error">
+                    {{ $message }}
+                </div>
+            @enderror
+
+
+            <div
+                id="productImagePreview"
+                class="product-image-preview"
+            ></div>
+
+        </div>
+
+
+        {{-- STATUS --}}
 
         <div class="product-section">
             Status
@@ -547,6 +648,8 @@ textarea.product-control {
         </div>
 
 
+        {{-- ACTIONS --}}
+
         <div class="product-actions">
 
             <a
@@ -565,8 +668,49 @@ textarea.product-control {
 
         </div>
 
+
     </form>
 
 </div>
+
+
+<script>
+
+document.getElementById('productImages').addEventListener('change', function(event) {
+
+    const preview = document.getElementById('productImagePreview');
+
+    preview.innerHTML = '';
+
+    const files = event.target.files;
+
+    Array.from(files).forEach(function(file) {
+
+        if (!file.type.startsWith('image/')) {
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            const item = document.createElement('div');
+
+            item.className = 'product-preview-item';
+
+            item.innerHTML = `
+                <img src="${e.target.result}" alt="Product Image">
+            `;
+
+            preview.appendChild(item);
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+});
+
+</script>
 
 @endsection

@@ -443,7 +443,7 @@
                                 @if($subCategory->image)
 
                                     <img
-                                        src="{{ asset('storage/' . $subCategory->image) }}"
+                                        src="{{ asset('assets/images/subcategories/' . $subCategory->image) }}"
                                         class="subcategory-image"
                                         alt="{{ $subCategory->name }}"
                                     >
@@ -628,7 +628,7 @@
             ],
 
             order: [
-                [0, 'asc']
+                [0, 'desc']
             ],
 
             columnDefs: [

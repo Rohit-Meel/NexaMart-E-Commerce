@@ -9,6 +9,7 @@ use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Admin;
 
 class DashboardController extends Controller
 {
@@ -21,13 +22,24 @@ class DashboardController extends Controller
         $totalCustomers = Customer::count();
         $totalOrders = Order::count();
 
+        // Recent Orders
+        $recentOrders = Order::with('customer')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        // Admin Management
+        $admins = Admin::latest()->get();
+
         return view('admin.dashboard', compact(
             'totalCategories',
             'totalBrands',
             'totalVendors',
             'totalProducts',
             'totalCustomers',
-            'totalOrders'
+            'totalOrders',
+            'recentOrders',
+            'admins'
         ));
     }
 }

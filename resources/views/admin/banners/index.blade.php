@@ -688,7 +688,7 @@
                         @if($banner->image)
 
                         <img
-                            src="{{ asset('storage/' . $banner->image) }}"
+                            src="{{ asset('assets/images/banners/' . $banner->image) }}"
                             class="banner-image"
                             alt="{{ $banner->title }}">
 
@@ -932,7 +932,7 @@
             ],
 
             order: [
-                [0, 'asc']
+                [0, 'desc']
             ],
 
             columnDefs: [

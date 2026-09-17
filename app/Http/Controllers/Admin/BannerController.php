@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
@@ -94,11 +92,25 @@ class BannerController extends Controller
         ]);
 
 
+        /*
+        |--------------------------------------------------------------------------
+        | BANNER IMAGE UPLOAD
+        |--------------------------------------------------------------------------
+        */
+
         if ($request->hasFile('image')) {
 
-            $validated['image'] = $request
-                ->file('image')
-                ->store('banners', 'public');
+            $image = $request->file('image');
+
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $image->move(
+                public_path('assets/images/banners'),
+                $imageName
+            );
+
+            // Database me sirf filename save hoga
+            $validated['image'] = $imageName;
         }
 
 
@@ -187,19 +199,39 @@ class BannerController extends Controller
         ]);
 
 
+        /*
+        |--------------------------------------------------------------------------
+        | UPDATE BANNER IMAGE
+        |--------------------------------------------------------------------------
+        */
+
         if ($request->hasFile('image')) {
 
+            // Delete old image
             if ($banner->image) {
 
-                Storage::disk('public')->delete(
-                    $banner->image
+                $oldImage = public_path(
+                    'assets/images/banners/' . $banner->image
                 );
+
+                if (file_exists($oldImage)) {
+                    unlink($oldImage);
+                }
             }
 
 
-            $validated['image'] = $request
-                ->file('image')
-                ->store('banners', 'public');
+            // Upload new image
+            $image = $request->file('image');
+
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $image->move(
+                public_path('assets/images/banners'),
+                $imageName
+            );
+
+            // Database me sirf filename
+            $validated['image'] = $imageName;
         }
 
 
@@ -222,11 +254,21 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | DELETE BANNER IMAGE
+        |--------------------------------------------------------------------------
+        */
+
         if ($banner->image) {
 
-            Storage::disk('public')->delete(
-                $banner->image
+            $imagePath = public_path(
+                'assets/images/banners/' . $banner->image
             );
+
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
 
 

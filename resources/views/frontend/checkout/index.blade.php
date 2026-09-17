@@ -517,7 +517,7 @@
                                         @if($item->product->thumbnail)
 
                                             <img
-                                                src="{{ asset($item->product->thumbnail) }}"
+                                                src="{{ asset('assets/images/products/' . $item->product->thumbnail) }}"
                                                 alt="{{ $item->product->name }}"
                                             >
 
@@ -596,6 +596,156 @@
 
 
 
+                    {{-- ================================================= --}}
+                    {{-- COUPON --}}
+                    {{-- ================================================= --}}
+
+                    <div
+                        class="checkout-coupon"
+                        data-apply-url="{{ route('checkout.coupon.apply') }}"
+                        data-remove-url="{{ route('checkout.coupon.remove') }}"
+                    >
+
+                        <div class="checkout-coupon-heading">
+
+                            <div>
+
+                                <strong>
+                                    Have a Coupon?
+                                </strong>
+
+                                <span>
+                                    Apply your coupon and save more.
+                                </span>
+
+                            </div>
+
+                            <i class="fa-solid fa-ticket"></i>
+
+                        </div>
+
+
+
+                        {{-- COUPON INPUT --}}
+
+                        <div class="coupon-input-row">
+
+                            <input
+                                type="text"
+                                id="couponCode"
+                                placeholder="Enter coupon code"
+                                value="{{ $couponCode ?? '' }}"
+                                autocomplete="off"
+                            >
+
+                            <button
+                                type="button"
+                                id="applyCouponBtn"
+                            >
+                                Apply
+                            </button>
+
+                        </div>
+
+
+
+                        {{-- APPLIED COUPON --}}
+
+                        <div
+                            id="appliedCoupon"
+                            class="applied-coupon{{ !empty($couponCode) ? ' show' : '' }}"
+                        >
+
+                            <div>
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                                <span>
+
+                                    Coupon
+
+                                    <strong id="appliedCouponCode">
+                                        {{ $couponCode ?? '' }}
+                                    </strong>
+
+                                    applied
+
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                id="removeCouponBtn"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+
+
+                        {{-- COUPON MESSAGE --}}
+
+                        <div
+                            id="couponMessage"
+                            class="coupon-message"
+                        ></div>
+
+
+
+                        {{-- AVAILABLE COUPONS --}}
+
+                        @if(isset($availableCoupons) && $availableCoupons->count())
+
+                            <div class="available-coupons">
+
+                                <span class="available-coupons-title">
+                                    Available Coupons
+                                </span>
+
+
+                                @foreach($availableCoupons as $availableCoupon)
+
+                                    <button
+                                        type="button"
+                                        class="available-coupon"
+                                        data-code="{{ $availableCoupon->code }}"
+                                    >
+
+                                        <span>
+
+                                            <strong>
+                                                {{ $availableCoupon->code }}
+                                            </strong>
+
+                                            @if($availableCoupon->discount_type === 'percentage')
+
+                                                {{ rtrim(rtrim(number_format($availableCoupon->discount_value, 2), '0'), '.') }}% OFF
+
+                                            @else
+
+                                                ₹{{ number_format($availableCoupon->discount_value, 0) }} OFF
+
+                                            @endif
+
+                                        </span>
+
+                                        <i class="fa-solid fa-arrow-right"></i>
+
+                                    </button>
+
+                                @endforeach
+
+                            </div>
+
+                        @endif
+
+                    </div>
+
+
+
                     {{-- SUBTOTAL --}}
 
                     <div class="checkout-summary-line">
@@ -604,7 +754,7 @@
                             Subtotal
                         </span>
 
-                        <strong>
+                        <strong id="checkoutSubtotal">
                             ₹{{ number_format($subtotal, 2) }}
                         </strong>
 
@@ -620,7 +770,10 @@
                             Discount
                         </span>
 
-                        <strong class="discount">
+                        <strong
+                            class="discount"
+                            id="checkoutDiscount"
+                        >
 
                             @if($discount > 0)
 
@@ -696,7 +849,7 @@
                             Total
                         </span>
 
-                        <strong>
+                        <strong id="checkoutTotal">
                             ₹{{ number_format($totalAmount, 2) }}
                         </strong>
 
@@ -751,7 +904,9 @@
 
 
 
-{{-- PAYMENT OPTION JS --}}
+{{-- ========================================================= --}}
+{{-- CHECKOUT JS --}}
+{{-- ========================================================= --}}
 
 <script>
 
@@ -802,6 +957,527 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /*
     |--------------------------------------------------------------------------
+    | COUPON ELEMENTS
+    |--------------------------------------------------------------------------
+    */
+
+    const couponBox =
+        document.querySelector('.checkout-coupon');
+
+
+    const couponCodeInput =
+        document.getElementById('couponCode');
+
+
+    const applyCouponBtn =
+        document.getElementById('applyCouponBtn');
+
+
+    const removeCouponBtn =
+        document.getElementById('removeCouponBtn');
+
+
+    const appliedCoupon =
+        document.getElementById('appliedCoupon');
+
+
+    const appliedCouponCode =
+        document.getElementById('appliedCouponCode');
+
+
+    const couponMessage =
+        document.getElementById('couponMessage');
+
+
+    const checkoutDiscount =
+        document.getElementById('checkoutDiscount');
+
+
+    const checkoutTotal =
+        document.getElementById('checkoutTotal');
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | COUPON URLs
+    |--------------------------------------------------------------------------
+    */
+
+    const applyCouponUrl =
+        couponBox
+            ? couponBox.dataset.applyUrl
+            : '';
+
+
+    const removeCouponUrl =
+        couponBox
+            ? couponBox.dataset.removeUrl
+            : '';
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | COUPON MESSAGE
+    |--------------------------------------------------------------------------
+    */
+
+    function showCouponMessage(message, type)
+    {
+
+        if (!couponMessage) {
+            return;
+        }
+
+
+        couponMessage.textContent =
+            message;
+
+
+        couponMessage.className =
+            'coupon-message ' + (type || 'error');
+
+
+        couponMessage.style.display =
+            'block';
+
+    }
+
+
+
+    function hideCouponMessage()
+    {
+
+        if (!couponMessage) {
+            return;
+        }
+
+
+        couponMessage.textContent =
+            '';
+
+
+        couponMessage.style.display =
+            'none';
+
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE CHECKOUT SUMMARY
+    |--------------------------------------------------------------------------
+    */
+
+    function updateCheckoutSummary(data)
+    {
+
+        if (checkoutDiscount) {
+
+            const discount =
+                Number(data.discount || 0);
+
+
+            checkoutDiscount.textContent =
+                discount > 0
+                    ? '− ₹' + discount.toFixed(2)
+                    : '₹0.00';
+
+        }
+
+
+        if (checkoutTotal) {
+
+            const total =
+                Number(data.total_amount || 0);
+
+
+            checkoutTotal.textContent =
+                '₹' + total.toFixed(2);
+
+        }
+
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | APPLY COUPON
+    |--------------------------------------------------------------------------
+    */
+
+    if (applyCouponBtn) {
+
+        applyCouponBtn.addEventListener(
+            'click',
+            function () {
+
+                const code =
+                    couponCodeInput
+                        ? couponCodeInput.value.trim()
+                        : '';
+
+
+                if (!code) {
+
+                    showCouponMessage(
+                        'Please enter a coupon code.',
+                        'error'
+                    );
+
+                    return;
+
+                }
+
+
+                if (!applyCouponUrl) {
+
+                    showCouponMessage(
+                        'Coupon service is unavailable.',
+                        'error'
+                    );
+
+                    return;
+
+                }
+
+
+                applyCouponBtn.disabled =
+                    true;
+
+
+                applyCouponBtn.textContent =
+                    'Applying...';
+
+
+                hideCouponMessage();
+
+
+                fetch(
+                    applyCouponUrl,
+                    {
+
+                        method: 'POST',
+
+                        headers: {
+
+                            'Content-Type':
+                                'application/json',
+
+                            'X-CSRF-TOKEN':
+                                document
+                                    .querySelector(
+                                        'meta[name="csrf-token"]'
+                                    )
+                                    .getAttribute('content'),
+
+                            'Accept':
+                                'application/json'
+
+                        },
+
+                        body: JSON.stringify({
+
+                            coupon_code: code
+
+                        })
+
+                    }
+                )
+
+
+                .then(async function (response) {
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.message ||
+                            'Unable to apply coupon.'
+                        );
+
+                    }
+
+
+                    return data;
+
+                })
+
+
+                .then(function (data) {
+
+                    updateCheckoutSummary(data);
+
+
+                    if (appliedCoupon) {
+
+                        appliedCoupon.classList.add(
+                            'show'
+                        );
+
+                    }
+
+
+                    if (appliedCouponCode) {
+
+                        appliedCouponCode.textContent =
+                            data.coupon_code;
+
+                    }
+
+
+                    showCouponMessage(
+                        data.message ||
+                        'Coupon applied successfully.',
+                        'success'
+                    );
+
+                })
+
+
+                .catch(function (error) {
+
+                    showCouponMessage(
+                        error.message ||
+                        'Unable to apply coupon.',
+                        'error'
+                    );
+
+                })
+
+
+                .finally(function () {
+
+                    applyCouponBtn.disabled =
+                        false;
+
+
+                    applyCouponBtn.textContent =
+                        'Apply';
+
+                });
+
+            }
+        );
+
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ENTER KEY - APPLY COUPON
+    |--------------------------------------------------------------------------
+    */
+
+    if (couponCodeInput) {
+
+        couponCodeInput.addEventListener(
+            'keydown',
+            function (event) {
+
+                if (event.key === 'Enter') {
+
+                    event.preventDefault();
+
+
+                    if (applyCouponBtn) {
+
+                        applyCouponBtn.click();
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | AVAILABLE COUPONS
+    |--------------------------------------------------------------------------
+    */
+
+    document
+        .querySelectorAll('.available-coupon')
+        .forEach(function (button) {
+
+            button.addEventListener(
+                'click',
+                function () {
+
+                    const code =
+                        button.dataset.code || '';
+
+
+                    if (couponCodeInput) {
+
+                        couponCodeInput.value =
+                            code;
+
+                    }
+
+
+                    if (applyCouponBtn) {
+
+                        applyCouponBtn.click();
+
+                    }
+
+                }
+            );
+
+        });
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | REMOVE COUPON
+    |--------------------------------------------------------------------------
+    */
+
+    if (removeCouponBtn) {
+
+        removeCouponBtn.addEventListener(
+            'click',
+            function () {
+
+                if (!removeCouponUrl) {
+
+                    showCouponMessage(
+                        'Coupon service is unavailable.',
+                        'error'
+                    );
+
+                    return;
+
+                }
+
+
+                removeCouponBtn.disabled =
+                    true;
+
+
+                hideCouponMessage();
+
+
+                fetch(
+                    removeCouponUrl,
+                    {
+
+                        method: 'POST',
+
+                        headers: {
+
+                            'Content-Type':
+                                'application/json',
+
+                            'X-CSRF-TOKEN':
+                                document
+                                    .querySelector(
+                                        'meta[name="csrf-token"]'
+                                    )
+                                    .getAttribute('content'),
+
+                            'Accept':
+                                'application/json'
+
+                        }
+
+                    }
+                )
+
+
+                .then(async function (response) {
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.message ||
+                            'Unable to remove coupon.'
+                        );
+
+                    }
+
+
+                    return data;
+
+                })
+
+
+                .then(function (data) {
+
+                    if (couponCodeInput) {
+
+                        couponCodeInput.value =
+                            '';
+
+                    }
+
+
+                    if (appliedCoupon) {
+
+                        appliedCoupon.classList.remove(
+                            'show'
+                        );
+
+                    }
+
+
+                    updateCheckoutSummary(data);
+
+
+                    showCouponMessage(
+                        data.message ||
+                        'Coupon removed successfully.',
+                        'success'
+                    );
+
+                })
+
+
+                .catch(function (error) {
+
+                    showCouponMessage(
+                        error.message ||
+                        'Unable to remove coupon.',
+                        'error'
+                    );
+
+                })
+
+
+                .finally(function () {
+
+                    removeCouponBtn.disabled =
+                        false;
+
+                });
+
+            }
+        );
+
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
     | PREVENT DOUBLE ORDER SUBMISSION
     |--------------------------------------------------------------------------
     */
@@ -820,7 +1496,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'submit',
             function () {
 
-                placeOrderBtn.disabled = true;
+                placeOrderBtn.disabled =
+                    true;
 
 
                 placeOrderBtn.querySelector(
@@ -836,5 +1513,242 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
+
+
+
+{{-- ========================================================= --}}
+{{-- COUPON CSS --}}
+{{-- ========================================================= --}}
+
+<style>
+
+/* =========================================================
+   CHECKOUT COUPON
+========================================================= */
+
+.checkout-coupon {
+    margin: 20px 0;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.checkout-coupon-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.checkout-coupon-heading strong {
+    display: block;
+    color: #003680;
+    font-size: 14px;
+}
+
+.checkout-coupon-heading span {
+    display: block;
+    margin-top: 3px;
+    color: #777;
+    font-size: 11px;
+}
+
+.checkout-coupon-heading > i {
+    color: #FF7A00;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   COUPON INPUT
+========================================================= */
+
+.coupon-input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.coupon-input-row input {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    outline: none;
+    font-size: 13px;
+}
+
+.coupon-input-row input:focus {
+    border-color: #003680;
+}
+
+.coupon-input-row button {
+    flex: 0 0 72px;
+    height: 40px;
+    border: 0;
+    border-radius: 8px;
+    background: #003680;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.coupon-input-row button:hover {
+    background: #CD001C;
+}
+
+.coupon-input-row button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   APPLIED COUPON
+========================================================= */
+
+.applied-coupon {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+.applied-coupon.show {
+    display: flex;
+}
+
+.applied-coupon > div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.applied-coupon i {
+    color: #16A34A;
+}
+
+.applied-coupon span {
+    color: #333;
+    font-size: 11px;
+}
+
+.applied-coupon span strong {
+    color: #16A34A;
+}
+
+.applied-coupon button {
+    border: 0;
+    background: transparent;
+    color: #CD001C;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   COUPON MESSAGE
+========================================================= */
+
+.coupon-message {
+    display: none;
+    margin-top: 8px;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.coupon-message.success {
+    color: #16A34A;
+}
+
+.coupon-message.error {
+    color: #CD001C;
+}
+
+
+/* =========================================================
+   AVAILABLE COUPONS
+========================================================= */
+
+.available-coupons {
+    margin-top: 14px;
+}
+
+.available-coupons-title {
+    display: block;
+    margin-bottom: 7px;
+    color: #555;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.available-coupon {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 8px 9px;
+    border: 1px dashed #d7dce2;
+    border-radius: 7px;
+    background: #fafafa;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+}
+
+.available-coupon:hover {
+    border-color: #003680;
+    background: #f7faff;
+}
+
+.available-coupon span {
+    font-size: 10px;
+}
+
+.available-coupon span strong {
+    margin-right: 5px;
+    color: #003680;
+}
+
+.available-coupon i {
+    color: #FF7A00;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .coupon-input-row {
+        gap: 6px;
+    }
+
+    .coupon-input-row button {
+        flex: 0 0 65px;
+        width: 65px;
+    }
+
+    .checkout-coupon {
+        padding: 13px;
+    }
+
+}
+
+</style>
 
 @endsection

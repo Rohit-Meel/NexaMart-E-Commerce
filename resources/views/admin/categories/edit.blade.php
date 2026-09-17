@@ -277,7 +277,7 @@
                 <div class="current-image">
 
                     <img
-                        src="{{ asset('storage/' . $category->image) }}"
+                         src="{{ asset('assets/images/category/' . $category->image) }}"
                         alt="{{ $category->name }}"
                     >
 

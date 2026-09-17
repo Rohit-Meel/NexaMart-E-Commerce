@@ -207,7 +207,7 @@
                                             )
 
                                                 <img
-                                                    src="{{ asset('storage/' . $item->product->thumbnail) }}"
+                                                    src="{{ asset('assets/images/products/' . $item->product->thumbnail) }}"
                                                     alt="{{ $item->product->name }}"
                                                 >
 

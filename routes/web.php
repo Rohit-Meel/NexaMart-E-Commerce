@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\OfferController;
 use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\CustomerAccountController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -30,10 +31,12 @@ use App\Http\Controllers\Admin\BannerController as AdminBannerController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\SettingController as AdminSettingController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Models\Admin;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'index']) ->name('products');
+Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');  
 Route::get('/about', [AboutController::class, 'index']) ->name('about');    
 Route::get('/contact', [ContactController::class, 'index']) ->name('contact');  
@@ -68,10 +71,13 @@ Route::middleware('auth:customer')->group(function () {
     Route::get('/checkout',[CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/place-order',[CheckoutController::class, 'placeOrder'])->name('checkout.place-order');
     Route::post('/checkout/prepare', [CheckoutController::class, 'prepare'])->name('checkout.prepare');
+    Route::post('/checkout/coupon/apply', [CheckoutController::class, 'applyCoupon'])->name('checkout.coupon.apply');
+    Route::post('/checkout/coupon/remove', [CheckoutController::class, 'removeCoupon'])->name('checkout.coupon.remove');
     Route::get( '/my-account',[CustomerAccountController::class, 'index'])->name('customer.account');
     Route::get('/my-account/orders',[OrderController::class, 'index'])->name('orders');
     // Route::get('/', [CustomerAccountController::class, 'index'])->name('my-account');
     Route::get('/orders', [OrderController::class, 'index'])->name('my-account.orders');
+    Route::post('/products/{product}/review',[ReviewController::class, 'store'])->name('reviews.store');
 });
 
 
@@ -84,7 +90,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index']) ->name('dashboard');
-
+        Route::resource('admins', AdminController::class)->except(['show']);
+        Route::patch('admins/{admin}/toggle-status',[AdminController::class, 'toggleStatus'])->name('admins.toggle-status');
         Route::resource('categories', AdminCategoryController::class)->except(['show']);
         Route::patch('categories/{category}/toggle-status', [AdminCategoryController::class, 'toggleStatus']) ->name('categories.toggle-status');
         Route::resource('subcategories', AdminSubCategoryController::class)->except(['show']) ->parameters(['subcategories' => 'subCategory', ]);

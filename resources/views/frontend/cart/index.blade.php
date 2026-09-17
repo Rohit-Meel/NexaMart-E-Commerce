@@ -410,7 +410,7 @@
                         </div>
 
 
-                        {{-- COUPON --}}
+                        <!-- {{-- COUPON --}}
 
                         <div class="coupon-box">
 
@@ -424,7 +424,7 @@
                                 Apply
                             </button>
 
-                        </div>
+                        </div> -->
 
 
                         {{-- CHECKOUT --}}

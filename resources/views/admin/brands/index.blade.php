@@ -441,7 +441,7 @@
                                 @if($brand->logo)
 
                                     <img
-                                        src="{{ asset('storage/' . $brand->logo) }}"
+                                         src="{{ asset('assets/images/brand/' . $brand->logo) }}"
                                         class="brand-logo"
                                         alt="{{ $brand->name }}"
                                     >
@@ -618,7 +618,7 @@
             ],
 
             order: [
-                [0, 'asc']
+                [0, 'desc']
             ],
 
             columnDefs: [

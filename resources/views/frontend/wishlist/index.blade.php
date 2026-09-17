@@ -6,7 +6,6 @@
 
 
 <style>
-
     /*
     |--------------------------------------------------------------------------
     | WISHLIST AJAX TOAST
@@ -150,6 +149,45 @@
 
     }
 
+    /* =========================
+   BUY NOW BUTTON
+   ========================= */
+
+.buy-now-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 18px;
+
+    background: #CD001C;
+    color: #ffffff !important;
+
+    border: 1px solid #CD001C;
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none !important;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.buy-now-btn:hover {
+    background: #003680;
+    border-color: #003680;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transform: translateY(-1px);
+}
+
+.buy-now-btn:active {
+    transform: translateY(0);
+}
 </style>
 
 
@@ -205,8 +243,7 @@
 
             <a
                 href="{{ route('products') }}"
-                class="wishlist-shop-btn"
-            >
+                class="wishlist-shop-btn">
 
                 <i class="fa-solid fa-bag-shopping"></i>
 
@@ -228,317 +265,305 @@
             @if($wishlistItems->isEmpty())
 
 
-                <!-- EMPTY -->
+            <!-- EMPTY -->
 
-                <div class="wishlist-empty">
+            <div class="wishlist-empty">
 
-                    <div class="wishlist-empty-icon">
+                <div class="wishlist-empty-icon">
 
-                        <i class="fa-regular fa-heart"></i>
-
-                    </div>
-
-
-                    <h2>
-                        Your Wishlist is Empty
-                    </h2>
-
-
-                    <p>
-                        Looks like you haven't added anything to your wishlist yet.
-                    </p>
-
-
-                    <a
-                        href="{{ route('products') }}"
-                        class="wishlist-empty-btn"
-                    >
-
-                        <i class="fa-solid fa-bag-shopping"></i>
-
-                        Start Shopping
-
-                    </a>
+                    <i class="fa-regular fa-heart"></i>
 
                 </div>
+
+
+                <h2>
+                    Your Wishlist is Empty
+                </h2>
+
+
+                <p>
+                    Looks like you haven't added anything to your wishlist yet.
+                </p>
+
+
+                <a
+                    href="{{ route('products') }}"
+                    class="wishlist-empty-btn">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    Start Shopping
+
+                </a>
+
+            </div>
 
 
             @else
 
 
-                <!-- ================================================= -->
-                <!-- WISHLIST GRID -->
-                <!-- ================================================= -->
+            <!-- ================================================= -->
+            <!-- WISHLIST GRID -->
+            <!-- ================================================= -->
 
-                <div class="wishlist-grid">
+            <div class="wishlist-grid">
 
 
-                    @foreach($wishlistItems as $item)
+                @foreach($wishlistItems as $item)
 
 
-                        @php
+                @php
 
-                            $product =
-                                $item->product;
+                $product =
+                $item->product;
 
-                        @endphp
+                @endphp
 
 
-                        @if($product)
+                @if($product)
 
 
-                            <div
-                                class="wishlist-card"
-                                data-product-id="{{ $product->id }}"
-                            >
+                <div
+                    class="wishlist-card"
+                    data-product-id="{{ $product->id }}">
 
 
-                                <!-- ================================================= -->
-                                <!-- PRODUCT IMAGE -->
-                                <!-- ================================================= -->
+                    <!-- ================================================= -->
+                    <!-- PRODUCT IMAGE -->
+                    <!-- ================================================= -->
 
-                                <div class="wishlist-image">
+                    <div class="wishlist-image">
 
 
-                                    @if($product->thumbnail)
+                        @if($product->thumbnail)
 
-                                        <img
-                                            src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
-                                            alt="{{ $product->name }}"
-                                        >
+                        <img
+                            src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
+                            alt="{{ $product->name }}">
 
-                                    @elseif($product->image)
+                        @elseif($product->image)
 
-                                        <img
-                                            src="{{ asset($product->image) }}"
-                                            alt="{{ $product->name }}"
-                                        >
+                        <img
+                            src="{{ asset($product->image) }}"
+                            alt="{{ $product->name }}">
 
-                                    @else
+                        @else
 
-                                        <img
-                                            src="{{ asset('assets/images/products/Watch.jpg') }}"
-                                            alt="{{ $product->name }}"
-                                        >
-
-                                    @endif
-
-
-
-                                    <!-- REMOVE -->
-
-                                    <form
-                                        action="{{ route('wishlist.remove', $product->id) }}"
-                                        method="POST"
-                                        class="wishlist-remove-form"
-                                    >
-
-                                        @csrf
-
-                                        @method('DELETE')
-
-
-                                        <button
-                                            type="submit"
-                                            class="wishlist-remove"
-                                            title="Remove from wishlist"
-                                        >
-
-                                            <i class="fa-solid fa-heart"></i>
-
-                                        </button>
-
-                                    </form>
-
-
-                                </div>
-
-
-
-                                <!-- ================================================= -->
-                                <!-- PRODUCT INFO -->
-                                <!-- ================================================= -->
-
-                                <div class="wishlist-info">
-
-
-                                    <!-- CATEGORY -->
-
-                                    @if($product->category)
-
-                                        <span class="wishlist-category">
-                                            {{ $product->category->name }}
-                                        </span>
-
-                                    @else
-
-                                        <span class="wishlist-category">
-                                            Product
-                                        </span>
-
-                                    @endif
-
-
-
-                                    <!-- PRODUCT NAME -->
-
-                                    <h3>
-                                        {{ $product->name }}
-                                    </h3>
-
-
-
-                                    <!-- RATING -->
-
-                                    <div class="wishlist-rating">
-
-
-                                        @php
-
-                                            $averageRating =
-                                                $product->reviews->avg('rating')
-                                                ?? 0;
-
-                                            $reviewCount =
-                                                $product->reviews->count();
-
-                                        @endphp
-
-
-                                        <span>
-
-                                            @for($i = 1; $i <= 5; $i++)
-
-                                                @if(
-                                                    $i <=
-                                                    round($averageRating)
-                                                )
-
-                                                    ★
-
-                                                @else
-
-                                                    ☆
-
-                                                @endif
-
-                                            @endfor
-
-                                        </span>
-
-
-                                        <small>
-                                            ({{ $reviewCount }})
-                                        </small>
-
-                                    </div>
-
-
-
-                                    <!-- PRICE -->
-
-                                    <div class="wishlist-price">
-
-
-                                        @if(
-                                            $product->sale_price &&
-                                            $product->price > $product->sale_price
-                                        )
-
-
-                                            <strong>
-                                                ₹{{ number_format($product->sale_price, 2) }}
-                                            </strong>
-
-
-                                            <del>
-                                                ₹{{ number_format($product->price, 2) }}
-                                            </del>
-
-
-                                        @else
-
-
-                                            <strong>
-                                                ₹{{ number_format($product->price, 2) }}
-                                            </strong>
-
-
-                                        @endif
-
-
-                                    </div>
-
-
-
-                                    <!-- ================================================= -->
-                                    <!-- ACTIONS -->
-                                    <!-- ================================================= -->
-
-                                    <div class="wishlist-actions">
-
-
-                                        <!-- ADD TO CART -->
-
-                                        <form
-                                            action="{{ route('cart.add', $product->id) }}"
-                                            method="POST"
-                                            class="wishlist-cart-form"
-                                        >
-
-                                            @csrf
-
-
-                                            <button
-                                                type="submit"
-                                                class="wishlist-cart-btn"
-                                                title="Add to Cart"
-                                            >
-
-                                                <i class="fa-solid fa-cart-shopping"></i>
-
-                                            </button>
-
-                                        </form>
-
-
-
-                                        <!-- BUY NOW -->
-
-                                        <form
-                                            action="{{ route('buy.now', $product->id) }}"
-                                            method="POST"
-                                            class="wishlist-buy-form"
-                                        >
-
-                                            @csrf
-
-
-                                            <button
-                                                type="submit"
-                                                class="wishlist-buy-btn"
-                                            >
-                                                Buy Now
-                                            </button>
-
-                                        </form>
-
-
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-
+                        <img
+                            src="{{ asset('assets/images/products/Watch.jpg') }}"
+                            alt="{{ $product->name }}">
 
                         @endif
 
 
-                    @endforeach
 
+                        <!-- REMOVE -->
+
+                        <form
+                            action="{{ route('wishlist.remove', $product->id) }}"
+                            method="POST"
+                            class="wishlist-remove-form">
+
+                            @csrf
+
+                            @method('DELETE')
+
+
+                            <button
+                                type="submit"
+                                class="wishlist-remove"
+                                title="Remove from wishlist">
+
+                                <i class="fa-solid fa-heart"></i>
+
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+
+
+                    <!-- ================================================= -->
+                    <!-- PRODUCT INFO -->
+                    <!-- ================================================= -->
+
+                    <div class="wishlist-info">
+
+
+                        <!-- CATEGORY -->
+
+                        @if($product->category)
+
+                        <span class="wishlist-category">
+                            {{ $product->category->name }}
+                        </span>
+
+                        @else
+
+                        <span class="wishlist-category">
+                            Product
+                        </span>
+
+                        @endif
+
+
+
+                        <!-- PRODUCT NAME -->
+
+                        <h3>
+                            {{ $product->name }}
+                        </h3>
+
+
+
+                        <!-- RATING -->
+
+                        <div class="wishlist-rating">
+
+
+                            @php
+
+                            $averageRating =
+                            $product->reviews->avg('rating')
+                            ?? 0;
+
+                            $reviewCount =
+                            $product->reviews->count();
+
+                            @endphp
+
+
+                            <span>
+
+                                @for($i = 1; $i <= 5; $i++)
+
+                                    @if(
+                                    $i <=round($averageRating)
+                                    )
+
+                                    ★
+
+                                    @else
+
+                                    ☆
+
+                                    @endif
+
+                                    @endfor
+
+                                    </span>
+
+
+                                    <small>
+                                        ({{ $reviewCount }})
+                                    </small>
+
+                        </div>
+
+
+
+                        <!-- PRICE -->
+
+                        <div class="wishlist-price">
+
+
+                            @if(
+                            $product->sale_price &&
+                            $product->price > $product->sale_price
+                            )
+
+
+                            <strong>
+                                ₹{{ number_format($product->sale_price, 2) }}
+                            </strong>
+
+
+                            <del>
+                                ₹{{ number_format($product->price, 2) }}
+                            </del>
+
+
+                            @else
+
+
+                            <strong>
+                                ₹{{ number_format($product->price, 2) }}
+                            </strong>
+
+
+                            @endif
+
+
+                        </div>
+
+
+
+                        <!-- ================================================= -->
+                        <!-- ACTIONS -->
+                        <!-- ================================================= -->
+
+                        <div class="wishlist-actions">
+
+
+                            <!-- ADD TO CART -->
+
+                            <form
+                                action="{{ route('cart.add', $product->id) }}"
+                                method="POST"
+                                class="wishlist-cart-form">
+
+                                @csrf
+
+
+                                <button
+                                    type="submit"
+                                    class="wishlist-cart-btn"
+                                    title="Add to Cart">
+
+                                    <i class="fa-solid fa-cart-shopping"></i>
+
+                                </button>
+
+                            </form>
+
+
+
+                            {{-- BUY NOW --}}
+
+                            @auth('customer')
+
+                            <a
+                                href="{{ route('product.show', $product->slug) }}"
+                                class="buy-now-btn">
+                                Buy Now
+                            </a>
+
+                            @else
+
+                            <a
+                                href="{{ route('login') }}"
+                                class="buy-now-btn">
+                                Buy Now
+                            </a>
+
+                            @endauth
+                        </div>
+
+
+                    </div>
 
                 </div>
+
+
+                @endif
+
+
+                @endforeach
+
+
+            </div>
 
 
             @endif
@@ -560,13 +585,11 @@
 <div
     id="wishlistToast"
     class="wishlist-ajax-toast"
-    aria-live="polite"
->
+    aria-live="polite">
 
     <i
         id="wishlistToastIcon"
-        class="fa-solid fa-circle-check"
-    ></i>
+        class="fa-solid fa-circle-check"></i>
 
 
     <span id="wishlistToastMessage">
@@ -578,466 +601,453 @@
 
 
 <script>
-
-document.addEventListener(
-    'DOMContentLoaded',
-    function () {
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | TOAST
-        |--------------------------------------------------------------------------
-        */
-
-        const toast =
-            document.getElementById(
-                'wishlistToast'
-            );
+    document.addEventListener(
+        'DOMContentLoaded',
+        function() {
 
 
-        const toastIcon =
-            document.getElementById(
-                'wishlistToastIcon'
-            );
+            /*
+            |--------------------------------------------------------------------------
+            | TOAST
+            |--------------------------------------------------------------------------
+            */
+
+            const toast =
+                document.getElementById(
+                    'wishlistToast'
+                );
 
 
-        const toastMessage =
-            document.getElementById(
-                'wishlistToastMessage'
-            );
+            const toastIcon =
+                document.getElementById(
+                    'wishlistToastIcon'
+                );
 
 
-        let toastTimer = null;
+            const toastMessage =
+                document.getElementById(
+                    'wishlistToastMessage'
+                );
+
+
+            let toastTimer = null;
 
 
 
-        function showToast(
-            message,
-            type = 'success'
-        ) {
+            function showToast(
+                message,
+                type = 'success'
+            ) {
 
 
-            if (!toast) {
-                return;
-            }
+                if (!toast) {
+                    return;
+                }
 
 
-            clearTimeout(
-                toastTimer
-            );
+                clearTimeout(
+                    toastTimer
+                );
 
 
-            toastMessage.textContent =
-                message;
+                toastMessage.textContent =
+                    message;
 
 
-            toast.classList.remove(
-                'show',
-                'success',
-                'error'
-            );
-
-
-            if (type === 'error') {
-
-                toast.classList.add(
+                toast.classList.remove(
+                    'show',
+                    'success',
                     'error'
                 );
 
 
-                toastIcon.className =
-                    'fa-solid fa-circle-exclamation';
-
-            } else {
-
-                toast.classList.add(
-                    'success'
-                );
-
-
-                toastIcon.className =
-                    'fa-solid fa-circle-check';
-
-            }
-
-
-            setTimeout(
-                function () {
+                if (type === 'error') {
 
                     toast.classList.add(
-                        'show'
+                        'error'
                     );
 
-                },
-                20
-            );
+
+                    toastIcon.className =
+                        'fa-solid fa-circle-exclamation';
+
+                } else {
+
+                    toast.classList.add(
+                        'success'
+                    );
 
 
-            toastTimer =
+                    toastIcon.className =
+                        'fa-solid fa-circle-check';
+
+                }
+
+
                 setTimeout(
-                    function () {
+                    function() {
 
-                        toast.classList.remove(
+                        toast.classList.add(
                             'show'
                         );
 
                     },
-                    3000
+                    20
                 );
 
-        }
+
+                toastTimer =
+                    setTimeout(
+                        function() {
+
+                            toast.classList.remove(
+                                'show'
+                            );
+
+                        },
+                        3000
+                    );
+
+            }
 
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | ADD TO CART FROM WISHLIST
-        |--------------------------------------------------------------------------
-        */
+            /*
+            |--------------------------------------------------------------------------
+            | ADD TO CART FROM WISHLIST
+            |--------------------------------------------------------------------------
+            */
 
-        document
-            .querySelectorAll(
-                '.wishlist-cart-form'
-            )
-            .forEach(
-                function (form) {
-
-
-                    form.addEventListener(
-                        'submit',
-                        function (event) {
+            document
+                .querySelectorAll(
+                    '.wishlist-cart-form'
+                )
+                .forEach(
+                    function(form) {
 
 
-                            event.preventDefault();
+                        form.addEventListener(
+                            'submit',
+                            function(event) {
 
 
-                            const button =
-                                form.querySelector(
-                                    '.wishlist-cart-btn'
-                                );
+                                event.preventDefault();
 
 
-                            if (
-                                !button ||
-                                button.disabled
-                            ) {
-
-                                return;
-                            }
+                                const button =
+                                    form.querySelector(
+                                        '.wishlist-cart-btn'
+                                    );
 
 
-                            button.disabled =
-                                true;
+                                if (
+                                    !button ||
+                                    button.disabled
+                                ) {
 
-
-                            fetch(
-                                form.action,
-                                {
-
-                                    method: 'POST',
-
-                                    credentials:
-                                        'same-origin',
-
-                                    headers: {
-
-                                        'X-CSRF-TOKEN':
-                                            '{{ csrf_token() }}',
-
-                                        'X-Requested-With':
-                                            'XMLHttpRequest',
-
-                                        'Accept':
-                                            'application/json'
-
-                                    },
-
-                                    body:
-                                        new FormData(form)
-
+                                    return;
                                 }
-                            )
 
 
-                            .then(
-                                function (response) {
+                                button.disabled =
+                                    true;
 
 
-                                    if (
-                                        response.status === 401 ||
-                                        response.redirected
-                                    ) {
+                                fetch(
+                                        form.action, {
 
-                                        window.location.href =
-                                            "{{ route('login') }}";
+                                            method: 'POST',
 
-                                        return null;
-                                    }
+                                            credentials: 'same-origin',
 
+                                            headers: {
 
-                                    return response.json();
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
 
-                                }
-                            )
+                                                'X-Requested-With': 'XMLHttpRequest',
 
+                                                'Accept': 'application/json'
 
-                            .then(
-                                function (data) {
+                                            },
 
+                                            body: new FormData(form)
 
-                                    if (!data) {
-                                        return;
-                                    }
+                                        }
+                                    )
 
 
-                                    if (data.success) {
+                                    .then(
+                                        function(response) {
 
 
-                                        showToast(
-                                            data.message ||
-                                            'Product successfully added to cart!',
-                                            'success'
-                                        );
+                                            if (
+                                                response.status === 401 ||
+                                                response.redirected
+                                            ) {
+
+                                                window.location.href =
+                                                    "{{ route('login') }}";
+
+                                                return null;
+                                            }
 
 
-                                        /*
-                                        | Update Cart Count
-                                        */
+                                            return response.json();
 
-                                        const cartCount =
-                                            document.querySelector(
-                                                '.cart-count'
+                                        }
+                                    )
+
+
+                                    .then(
+                                        function(data) {
+
+
+                                            if (!data) {
+                                                return;
+                                            }
+
+
+                                            if (data.success) {
+
+
+                                                showToast(
+                                                    data.message ||
+                                                    'Product successfully added to cart!',
+                                                    'success'
+                                                );
+
+
+                                                /*
+                                                | Update Cart Count
+                                                */
+
+                                                const cartCount =
+                                                    document.querySelector(
+                                                        '.cart-count'
+                                                    );
+
+
+                                                if (
+                                                    cartCount &&
+                                                    data.cart_count !== undefined
+                                                ) {
+
+                                                    cartCount.textContent =
+                                                        data.cart_count;
+
+                                                }
+
+                                            } else {
+
+
+                                                showToast(
+                                                    data.message ||
+                                                    'Unable to add product to cart.',
+                                                    'error'
+                                                );
+
+                                            }
+
+                                        }
+                                    )
+
+
+                                    .catch(
+                                        function(error) {
+
+
+                                            console.error(
+                                                'Wishlist Cart Error:',
+                                                error
                                             );
 
 
-                                        if (
-                                            cartCount &&
-                                            data.cart_count !== undefined
-                                        ) {
-
-                                            cartCount.textContent =
-                                                data.cart_count;
+                                            showToast(
+                                                'Unable to add product to cart.',
+                                                'error'
+                                            );
 
                                         }
-
-                                    } else {
-
-
-                                        showToast(
-                                            data.message ||
-                                            'Unable to add product to cart.',
-                                            'error'
-                                        );
-
-                                    }
-
-                                }
-                            )
+                                    )
 
 
-                            .catch(
-                                function (error) {
+                                    .finally(
+                                        function() {
 
+                                            button.disabled =
+                                                false;
 
-                                    console.error(
-                                        'Wishlist Cart Error:',
-                                        error
+                                        }
                                     );
 
-
-                                    showToast(
-                                        'Unable to add product to cart.',
-                                        'error'
-                                    );
-
-                                }
-                            )
-
-
-                            .finally(
-                                function () {
-
-                                    button.disabled =
-                                        false;
-
-                                }
-                            );
-
-                        }
-                    );
-
-                }
-            );
-
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | REMOVE FROM WISHLIST
-        |--------------------------------------------------------------------------
-        */
-
-        document
-            .querySelectorAll(
-                '.wishlist-remove-form'
-            )
-            .forEach(
-                function (form) {
-
-
-                    form.addEventListener(
-                        'submit',
-                        function (event) {
-
-
-                            event.preventDefault();
-
-
-                            const button =
-                                form.querySelector(
-                                    '.wishlist-remove'
-                                );
-
-
-                            if (
-                                !button ||
-                                button.disabled
-                            ) {
-
-                                return;
                             }
+                        );
+
+                    }
+                );
 
 
-                            button.disabled =
-                                true;
+
+            /*
+            |--------------------------------------------------------------------------
+            | REMOVE FROM WISHLIST
+            |--------------------------------------------------------------------------
+            */
+
+            document
+                .querySelectorAll(
+                    '.wishlist-remove-form'
+                )
+                .forEach(
+                    function(form) {
 
 
-                            const card =
-                                form.closest(
-                                    '.wishlist-card'
-                                );
+                        form.addEventListener(
+                            'submit',
+                            function(event) {
 
 
-                            fetch(
-                                form.action,
-                                {
+                                event.preventDefault();
 
-                                    method: 'POST',
 
-                                    credentials:
-                                        'same-origin',
+                                const button =
+                                    form.querySelector(
+                                        '.wishlist-remove'
+                                    );
 
-                                    headers: {
 
-                                        'X-CSRF-TOKEN':
-                                            '{{ csrf_token() }}',
+                                if (
+                                    !button ||
+                                    button.disabled
+                                ) {
 
-                                        'X-Requested-With':
-                                            'XMLHttpRequest',
-
-                                        'Accept':
-                                            'application/json'
-
-                                    },
-
-                                    body:
-                                        new FormData(form)
-
+                                    return;
                                 }
-                            )
 
 
-                            .then(
-                                function (response) {
+                                button.disabled =
+                                    true;
 
 
-                                    if (
-                                        response.status === 401 ||
-                                        response.redirected
-                                    ) {
-
-                                        window.location.href =
-                                            "{{ route('login') }}";
-
-                                        return null;
-                                    }
+                                const card =
+                                    form.closest(
+                                        '.wishlist-card'
+                                    );
 
 
-                                    return response.json();
+                                fetch(
+                                        form.action, {
 
-                                }
-                            )
+                                            method: 'POST',
 
+                                            credentials: 'same-origin',
 
-                            .then(
-                                function (data) {
+                                            headers: {
 
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
 
-                                    if (!data) {
-                                        return;
-                                    }
+                                                'X-Requested-With': 'XMLHttpRequest',
 
+                                                'Accept': 'application/json'
 
-                                    if (data.success) {
+                                            },
 
+                                            body: new FormData(form)
 
-                                        showToast(
-                                            data.message ||
-                                            'Product removed from wishlist.',
-                                            'success'
-                                        );
+                                        }
+                                    )
 
 
-                                        /*
-                                        | Remove Card
-                                        */
-
-                                        if (card) {
-
-                                            card.style.opacity =
-                                                '0';
-
-                                            card.style.transform =
-                                                'scale(0.95)';
+                                    .then(
+                                        function(response) {
 
 
-                                            card.style.transition =
-                                                'all 0.3s ease';
+                                            if (
+                                                response.status === 401 ||
+                                                response.redirected
+                                            ) {
+
+                                                window.location.href =
+                                                    "{{ route('login') }}";
+
+                                                return null;
+                                            }
 
 
-                                            setTimeout(
-                                                function () {
+                                            return response.json();
 
-                                                    card.remove();
-
-
-                                                    /*
-                                                    | Check if any cards remain
-                                                    */
-
-                                                    const remainingCards =
-                                                        document.querySelectorAll(
-                                                            '.wishlist-card'
-                                                        );
+                                        }
+                                    )
 
 
-                                                    if (
-                                                        remainingCards.length ===
-                                                        0
-                                                    ) {
+                                    .then(
+                                        function(data) {
 
 
-                                                        const content =
-                                                            document.getElementById(
-                                                                'wishlistContent'
-                                                            );
+                                            if (!data) {
+                                                return;
+                                            }
 
 
-                                                        if (content) {
+                                            if (data.success) {
 
 
-                                                            content.innerHTML = `
+                                                showToast(
+                                                    data.message ||
+                                                    'Product removed from wishlist.',
+                                                    'success'
+                                                );
+
+
+                                                /*
+                                                | Remove Card
+                                                */
+
+                                                if (card) {
+
+                                                    card.style.opacity =
+                                                        '0';
+
+                                                    card.style.transform =
+                                                        'scale(0.95)';
+
+
+                                                    card.style.transition =
+                                                        'all 0.3s ease';
+
+
+                                                    setTimeout(
+                                                        function() {
+
+                                                            card.remove();
+
+
+                                                            /*
+                                                            | Check if any cards remain
+                                                            */
+
+                                                            const remainingCards =
+                                                                document.querySelectorAll(
+                                                                    '.wishlist-card'
+                                                                );
+
+
+                                                            if (
+                                                                remainingCards.length ===
+                                                                0
+                                                            ) {
+
+
+                                                                const content =
+                                                                    document.getElementById(
+                                                                        'wishlistContent'
+                                                                    );
+
+
+                                                                if (content) {
+
+
+                                                                    content.innerHTML = `
 
                                                                 <div class="wishlist-empty">
 
@@ -1070,67 +1080,66 @@ document.addEventListener(
 
                                                             `;
 
-                                                        }
+                                                                }
 
-                                                    }
+                                                            }
 
-                                                },
-                                                300
-                                            );
+                                                        },
+                                                        300
+                                                    );
+
+                                                }
+
+                                            } else {
+
+
+                                                showToast(
+                                                    data.message ||
+                                                    'Unable to remove product.',
+                                                    'error'
+                                                );
+
+
+                                                button.disabled =
+                                                    false;
+
+                                            }
 
                                         }
-
-                                    } else {
-
-
-                                        showToast(
-                                            data.message ||
-                                            'Unable to remove product.',
-                                            'error'
-                                        );
+                                    )
 
 
-                                        button.disabled =
-                                            false;
-
-                                    }
-
-                                }
-                            )
+                                    .catch(
+                                        function(error) {
 
 
-                            .catch(
-                                function (error) {
+                                            console.error(
+                                                'Wishlist Remove Error:',
+                                                error
+                                            );
 
 
-                                    console.error(
-                                        'Wishlist Remove Error:',
-                                        error
+                                            showToast(
+                                                'Unable to remove product from wishlist.',
+                                                'error'
+                                            );
+
+
+                                            button.disabled =
+                                                false;
+
+                                        }
                                     );
 
+                            }
+                        );
 
-                                    showToast(
-                                        'Unable to remove product from wishlist.',
-                                        'error'
-                                    );
-
-
-                                    button.disabled =
-                                        false;
-
-                                }
-                            );
-
-                        }
-                    );
-
-                }
-            );
+                    }
+                );
 
 
-    }
-);
-
+        }
+    );
 </script>
 
 @endsection

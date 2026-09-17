@@ -50,23 +50,31 @@ class ShopController extends Controller
 
                 $categorySlug = $request->category;
 
-                $query->whereHas('products.category', function ($categoryQuery) use ($categorySlug) {
+                $query->whereHas(
+                    'products.category',
+                    function ($categoryQuery) use ($categorySlug) {
 
-                    $categoryQuery->where(
-                        'slug',
-                        $categorySlug
-                    );
+                        $categoryQuery->where(
+                            'slug',
+                            $categorySlug
+                        );
 
-                });
+                    }
+                );
 
             })
 
             /*
-            | Load products and their categories
+            | Load only active products with category
             */
 
             ->with([
-                'products.category'
+                'products' => function ($query) {
+
+                    $query->where('status', true)
+                        ->with('category');
+
+                }
             ])
 
             ->latest()
@@ -75,18 +83,23 @@ class ShopController extends Controller
 
         /*
         |--------------------------------------------------------------------------
-        | CATEGORIES
+        | ALL CATEGORIES
         |--------------------------------------------------------------------------
+        |
+        | These categories are used on the main Shops page
+        | for filtering/searching shops.
+        |
         */
 
         $categories = Category::query()
+            ->where('status', true)
             ->orderBy('name')
             ->get();
 
 
         /*
         |--------------------------------------------------------------------------
-        | RETURN SHOP PAGE
+        | RETURN SHOP INDEX
         |--------------------------------------------------------------------------
         */
 
@@ -117,6 +130,11 @@ class ShopController extends Controller
         $shop = Vendor::query()
             ->where('shop_slug', $shop_slug)
             ->where('status', true)
+
+            /*
+            | Load only active products
+            */
+
             ->with([
                 'products' => function ($query) {
 
@@ -130,6 +148,7 @@ class ShopController extends Controller
 
                 }
             ])
+
             ->firstOrFail();
 
 
@@ -137,6 +156,9 @@ class ShopController extends Controller
         |--------------------------------------------------------------------------
         | SHOP PRODUCTS
         |--------------------------------------------------------------------------
+        |
+        | Only this particular shop's active products.
+        |
         */
 
         $products = $shop->products;
@@ -146,18 +168,27 @@ class ShopController extends Controller
         |--------------------------------------------------------------------------
         | SHOP CATEGORIES
         |--------------------------------------------------------------------------
+        |
+        | IMPORTANT:
+        | Categories are taken ONLY from this shop's products.
+        |
         */
 
         $shopCategories = $products
+            ->filter(function ($product) {
+
+                return $product->category !== null;
+
+            })
             ->pluck('category')
-            ->filter()
             ->unique('id')
+            ->sortBy('name')
             ->values();
 
 
         /*
         |--------------------------------------------------------------------------
-        | RETURN SHOP DETAIL PAGE
+        | RETURN SHOP DETAIL
         |--------------------------------------------------------------------------
         */
 

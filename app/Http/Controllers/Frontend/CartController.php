@@ -27,7 +27,10 @@ class CartController extends Controller
             ->latest()
             ->get();
 
-        return view('frontend.cart.index', compact('cartItems'));
+        return view(
+            'frontend.cart.index',
+            compact('cartItems')
+        );
     }
 
 
@@ -41,22 +44,51 @@ class CartController extends Controller
     {
         $customer = Auth::guard('customer')->user();
 
-        $product = Product::findOrFail($productId);
+        $product = Product::where('status', true)
+            ->findOrFail($productId);
 
-        $price = $product->sale_price &&
+        $request->validate([
+            'quantity' => [
+                'required',
+                'integer',
+                'min:1',
+                'max:' . $product->stock,
+            ],
+        ]);
+
+        $quantity = (int) $request->quantity;
+
+        $price = $product->sale_price !== null &&
                  $product->sale_price > 0
             ? $product->sale_price
             : $product->price;
-
 
         $cart = Cart::where('customer_id', $customer->id)
             ->where('product_id', $product->id)
             ->first();
 
-
         if ($cart) {
 
-            $cart->quantity += 1;
+            $newQuantity = $cart->quantity + $quantity;
+
+            if ($newQuantity > $product->stock) {
+
+                if ($request->expectsJson()) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Only ' . $product->stock . ' items are available in stock.',
+                    ], 422);
+                }
+
+                return redirect()
+                    ->back()
+                    ->with(
+                        'error',
+                        'Only ' . $product->stock . ' items are available in stock.'
+                    );
+            }
+
+            $cart->quantity = $newQuantity;
             $cart->price = $price;
             $cart->save();
 
@@ -65,36 +97,25 @@ class CartController extends Controller
             $cart = Cart::create([
                 'customer_id' => $customer->id,
                 'product_id'  => $product->id,
-                'quantity'    => 1,
+                'quantity'    => $quantity,
                 'price'       => $price,
             ]);
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | AJAX RESPONSE
-        |--------------------------------------------------------------------------
-        */
+        $cartCount = Cart::where(
+            'customer_id',
+            $customer->id
+        )->sum('quantity');
 
         if ($request->expectsJson()) {
 
             return response()->json([
                 'success' => true,
                 'message' => 'Product successfully added to cart!',
-                'cart_count' => Cart::where(
-                    'customer_id',
-                    $customer->id
-                )->sum('quantity'),
+                'cart_count' => $cartCount,
+                'quantity' => $cart->quantity,
             ]);
         }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | NORMAL REQUEST
-        |--------------------------------------------------------------------------
-        */
 
         return redirect()
             ->back()
@@ -109,79 +130,78 @@ class CartController extends Controller
     |--------------------------------------------------------------------------
     | BUY NOW
     |--------------------------------------------------------------------------
+    |
+    | IMPORTANT:
+    | Buy Now product CART TABLE me save nahi hota.
+    | Product ID + selected quantity session me store hoti hai.
+    |
     */
 
     public function buyNow(Request $request, $productId)
     {
-        $customer = Auth::guard('customer')->user();
+        $product = Product::where('status', true)
+            ->findOrFail($productId);
 
-        $product = Product::findOrFail($productId);
+        $request->validate([
+            'quantity' => [
+                'required',
+                'integer',
+                'min:1',
+                'max:' . $product->stock,
+            ],
+        ]);
 
-        $price = $product->sale_price &&
+        $quantity = (int) $request->quantity;
+
+        $price = $product->sale_price !== null &&
                  $product->sale_price > 0
             ? $product->sale_price
             : $product->price;
 
-
         /*
         |--------------------------------------------------------------------------
-        | If Product Already Exists In Cart
-        |--------------------------------------------------------------------------
-        */
-
-        $cart = Cart::where('customer_id', $customer->id)
-            ->where('product_id', $product->id)
-            ->first();
-
-
-        if ($cart) {
-
-            $cart->quantity = 1;
-            $cart->price = $price;
-            $cart->save();
-
-        } else {
-
-            $cart = Cart::create([
-                'customer_id' => $customer->id,
-                'product_id'  => $product->id,
-                'quantity'    => 1,
-                'price'       => $price,
-            ]);
-        }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Clear Previous Checkout State
+        | CLEAR OLD CHECKOUT STATE
         |--------------------------------------------------------------------------
         */
 
         session()->forget([
             'checkout_mode',
             'checkout_product_id',
+            'checkout_quantity',
+            'checkout_price',
             'checkout_cart_ids',
         ]);
 
-
         /*
         |--------------------------------------------------------------------------
-        | Store Buy Now Product
+        | STORE BUY NOW PRODUCT IN SESSION ONLY
         |--------------------------------------------------------------------------
         */
 
         session([
             'checkout_mode' => 'buy_now',
-            'checkout_product_id' => $cart->id,
+            'checkout_product_id' => $product->id,
+            'checkout_quantity' => $quantity,
+            'checkout_price' => $price,
         ]);
 
+        /*
+        |--------------------------------------------------------------------------
+        | AJAX RESPONSE
+        |--------------------------------------------------------------------------
+        */
+
+        if ($request->expectsJson()) {
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product ready for checkout.',
+                'redirect' => route('checkout'),
+            ]);
+        }
 
         return redirect()
-            ->route('checkout')
-            ->with(
-                'success',
-                'Product ready for checkout.'
-            );
+            ->route('checkout');
     }
 
 
@@ -203,16 +223,25 @@ class CartController extends Controller
             ],
         ]);
 
-
-        $cart = Cart::where('id', $id)
+        $cart = Cart::with('product')
+            ->where('id', $id)
             ->where('customer_id', $customer->id)
             ->firstOrFail();
 
+        if (
+            $cart->product &&
+            $request->quantity > $cart->product->stock
+        ) {
+            return redirect()
+                ->route('cart')
+                ->with(
+                    'error',
+                    'Only ' . $cart->product->stock . ' items are available in stock.'
+                );
+        }
 
-        $cart->quantity = $request->quantity;
-
+        $cart->quantity = (int) $request->quantity;
         $cart->save();
-
 
         return redirect()
             ->route('cart')
@@ -233,14 +262,11 @@ class CartController extends Controller
     {
         $customer = Auth::guard('customer')->user();
 
-
         $cart = Cart::where('id', $id)
             ->where('customer_id', $customer->id)
             ->firstOrFail();
 
-
         $cart->delete();
-
 
         return redirect()
             ->route('cart')

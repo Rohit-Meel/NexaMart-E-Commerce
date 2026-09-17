@@ -1,9 +1,11 @@
-
-
 <nav class="main-navbar">
 
     <div class="container">
-
+        
+        <button class="navbar-toggle" type="button" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        
         <ul>
 
             <li class="{{ request()->is('/') ? 'active' : '' }}">
@@ -59,3 +61,21 @@
     </div>
 
 </nav>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const toggle = document.querySelector('.navbar-toggle');
+    const menu = document.querySelector('.main-navbar ul');
+
+    if (toggle && menu) {
+
+        toggle.addEventListener('click', function () {
+
+            menu.classList.toggle('mobile-menu-open');
+
+        });
+
+    }
+
+});
+</script>

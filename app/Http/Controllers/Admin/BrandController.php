@@ -19,7 +19,6 @@ class BrandController extends Controller
         return view('admin.brands.index', compact('brands'));
     }
 
-
     /**
      * Show create form.
      */
@@ -28,16 +27,25 @@ class BrandController extends Controller
         return view('admin.brands.create');
     }
 
-
     /**
      * Store new brand.
      */
     public function store(Request $request)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | Status
+        |--------------------------------------------------------------------------
+        */
         $request->merge([
             'status' => $request->has('status') ? 1 : 0,
         ]);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Validation
+        |--------------------------------------------------------------------------
+        */
         $validated = $request->validate([
             'name' => [
                 'required',
@@ -63,26 +71,53 @@ class BrandController extends Controller
             ],
         ]);
 
-
+        /*
+        |--------------------------------------------------------------------------
+        | Slug
+        |--------------------------------------------------------------------------
+        */
         $validated['slug'] = Str::slug($validated['name']);
 
-
+        /*
+        |--------------------------------------------------------------------------
+        | Brand Logo Upload
+        |--------------------------------------------------------------------------
+        | Image will be stored in:
+        | public/assets/images/brand
+        |
+        | Database will store only filename.
+        |--------------------------------------------------------------------------
+        */
         if ($request->hasFile('logo')) {
 
-            $validated['logo'] = $request
-                ->file('logo')
-                ->store('brands', 'public');
+            $logo = $request->file('logo');
+
+            // Create unique logo name
+            $logoName = time() . '_' . Str::slug(
+                pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME)
+            ) . '.' . $logo->getClientOriginalExtension();
+
+            // Move logo to public brand folder
+            $logo->move(
+                public_path('assets/images/brand'),
+                $logoName
+            );
+
+            // Store only filename in database
+            $validated['logo'] = $logoName;
         }
 
-
+        /*
+        |--------------------------------------------------------------------------
+        | Create Brand
+        |--------------------------------------------------------------------------
+        */
         Brand::create($validated);
-
 
         return redirect()
             ->route('admin.brands.index')
             ->with('success', 'Brand created successfully.');
     }
-
 
     /**
      * Show edit form.
@@ -95,16 +130,25 @@ class BrandController extends Controller
         );
     }
 
-
     /**
      * Update brand.
      */
     public function update(Request $request, Brand $brand)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | Status
+        |--------------------------------------------------------------------------
+        */
         $request->merge([
             'status' => $request->has('status') ? 1 : 0,
         ]);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Validation
+        |--------------------------------------------------------------------------
+        */
         $validated = $request->validate([
             'name' => [
                 'required',
@@ -130,39 +174,95 @@ class BrandController extends Controller
             ],
         ]);
 
-
+        /*
+        |--------------------------------------------------------------------------
+        | Slug
+        |--------------------------------------------------------------------------
+        */
         $validated['slug'] = Str::slug($validated['name']);
 
-
+        /*
+        |--------------------------------------------------------------------------
+        | New Brand Logo
+        |--------------------------------------------------------------------------
+        */
         if ($request->hasFile('logo')) {
 
-            $validated['logo'] = $request
-                ->file('logo')
-                ->store('brands', 'public');
+            $logo = $request->file('logo');
+
+            /*
+            | Delete old logo
+            */
+            if (
+                !empty($brand->logo) &&
+                file_exists(
+                    public_path('assets/images/brand/' . $brand->logo)
+                )
+            ) {
+                unlink(
+                    public_path('assets/images/brand/' . $brand->logo)
+                );
+            }
+
+            // Create unique logo name
+            $logoName = time() . '_' . Str::slug(
+                pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME)
+            ) . '.' . $logo->getClientOriginalExtension();
+
+            // Move new logo
+            $logo->move(
+                public_path('assets/images/brand'),
+                $logoName
+            );
+
+            // Store only filename in database
+            $validated['logo'] = $logoName;
         }
 
-
+        /*
+        |--------------------------------------------------------------------------
+        | Update Brand
+        |--------------------------------------------------------------------------
+        */
         $brand->update($validated);
-
 
         return redirect()
             ->route('admin.brands.index')
             ->with('success', 'Brand updated successfully.');
     }
 
-
     /**
      * Delete brand.
      */
     public function destroy(Brand $brand)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | Delete Brand Logo
+        |--------------------------------------------------------------------------
+        */
+        if (
+            !empty($brand->logo) &&
+            file_exists(
+                public_path('assets/images/brand/' . $brand->logo)
+            )
+        ) {
+            unlink(
+                public_path('assets/images/brand/' . $brand->logo)
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Delete Brand
+        |--------------------------------------------------------------------------
+        */
         $brand->delete();
 
         return redirect()
             ->route('admin.brands.index')
             ->with('success', 'Brand deleted successfully.');
     }
-
 
     /**
      * Toggle brand status.

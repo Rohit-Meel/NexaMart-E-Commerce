@@ -202,6 +202,360 @@ Auth::guard('customer')->id()
         }
 
     }
+    /* ================================
+   PRODUCT SECTION - BUY NOW BUTTON
+================================ */
+
+.product-card .buy-now-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 68px !important;
+    height: 35px !important;
+
+    padding: 0 8px !important;
+    margin: 0 !important;
+
+    border: none !important;
+    border-radius: 4px !important;
+
+    background: #FF7A00 !important;
+    color: #ffffff !important;
+
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+
+    text-align: center !important;
+    text-decoration: none !important;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* HOVER */
+
+.product-card .buy-now-btn:hover {
+    background: #D8001B !important;
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 3px 8px rgba(216, 0, 27, 0.20);
+}
+
+
+/* ACTIVE */
+
+.product-card .buy-now-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+
+/* FOCUS */
+
+.product-card .buy-now-btn:focus {
+    outline: none !important;
+    color: #ffffff !important;
+}
+
+
+/* DISABLED */
+
+.product-card .buy-now-btn:disabled,
+.product-card .buy-now-btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* ================================
+   PRODUCT ACTION AREA
+================================ */
+
+.product-card .product-actions,
+.product-card .action-buttons,
+.product-card .product-bottom {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+/* CART BUTTON */
+
+.product-card .cart-btn {
+    width: 35px !important;
+    height: 35px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: none !important;
+    border-radius: 4px !important;
+
+    background: #003680 !important;
+    color: #ffffff !important;
+
+    cursor: pointer;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 767px) {
+
+    .product-card .buy-now-btn {
+        width: 68px !important;
+        height: 36px !important;
+        font-size: 10px !important;
+    }
+
+    .product-card .cart-btn {
+        width: 36px !important;
+        height: 36px !important;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .product-card .buy-now-btn {
+        width: 64px !important;
+        height: 35px !important;
+        font-size: 9px !important;
+        padding: 0 6px !important;
+    }
+
+    .product-card .cart-btn {
+        width: 34px !important;
+        height: 35px !important;
+    }
+}
+/* PRODUCT SECTION BUY NOW */
+
+.product-card .buy-now-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+
+    height: 35px !important;
+    min-height: 35px !important;
+    max-height: 35px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+
+    background: #FF7A00 !important;
+    color: #ffffff !important;
+
+    border: none !important;
+    border-radius: 4px !important;
+
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+
+    text-align: center !important;
+    text-decoration: none !important;
+
+    white-space: nowrap !important;
+
+    flex: 0 0 68px !important;
+
+    cursor: pointer;
+}
+
+
+/* HOVER */
+
+.product-card .buy-now-btn:hover {
+    background: #D8001B !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+
+/* ACTION ROW */
+
+.product-card .product-bottom,
+.product-card .product-actions,
+.product-card .product-price-row {
+    display: flex !important;
+    align-items: center !important;
+}
+
+
+/* CART BUTTON */
+
+.product-card .cart-btn {
+    width: 35px !important;
+    min-width: 35px !important;
+    max-width: 35px !important;
+
+    height: 35px !important;
+    min-height: 35px !important;
+    max-height: 35px !important;
+
+    flex: 0 0 35px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #003680 !important;
+    color: #ffffff !important;
+
+    border: none !important;
+    border-radius: 4px !important;
+
+    box-sizing: border-box !important;
+}
+
+/* ==========================================
+   PRODUCT CARD BOTTOM - PRICE + ACTIONS FIX
+========================================== */
+
+.product-card .product-bottom,
+.product-card .product-price-row {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: 5px !important;
+}
+
+
+/* PRICE AREA */
+
+.product-card .product-price {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+
+    white-space: nowrap !important;
+    overflow: hidden !important;
+}
+
+
+/* CURRENT PRICE */
+
+.product-card .product-price strong,
+.product-card .current-price {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* OLD PRICE */
+
+.product-card .old-price,
+.product-card del,
+.product-card .original-price {
+    flex: 0 1 auto !important;
+
+    white-space: nowrap !important;
+
+    font-size: 8px !important;
+}
+
+
+/* CART BUTTON - NEVER SHRINK */
+
+.product-card .cart-btn {
+    flex: 0 0 35px !important;
+
+    width: 35px !important;
+    min-width: 35px !important;
+    max-width: 35px !important;
+
+    height: 35px !important;
+    min-height: 35px !important;
+
+    padding: 0 !important;
+}
+
+
+/* BUY NOW - NEVER SHRINK */
+
+.product-card .buy-now-btn {
+    flex: 0 0 68px !important;
+
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+
+    height: 35px !important;
+    min-height: 35px !important;
+    max-height: 35px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* ==========================================
+   SMALL CARD FIX
+========================================== */
+
+@media (max-width: 480px) {
+
+    .product-card .product-bottom,
+    .product-card .product-price-row {
+        gap: 4px !important;
+    }
+
+    .product-card .cart-btn {
+        flex-basis: 34px !important;
+        width: 34px !important;
+        min-width: 34px !important;
+    }
+
+    .product-card .buy-now-btn {
+        flex-basis: 64px !important;
+        width: 64px !important;
+        min-width: 64px !important;
+        max-width: 64px !important;
+    }
+}
 </style>
 
 
@@ -706,17 +1060,26 @@ Auth::guard('customer')->id()
 
 
                             <!-- PRODUCT IMAGE -->
+
                             @if($product->thumbnail)
 
-                            <img
-                                src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
-                                alt="{{ $product->name }}">
+                            <a
+                                href="{{ route('product.show', $product->slug) }}"
+                                class="shop-product-image-link">
+                                <img
+                                    src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
+                                    alt="{{ $product->name }}">
+                            </a>
 
                             @else
 
-                            <img
-                                src="{{ asset('assets/images/products/Watch.jpg') }}"
-                                alt="{{ $product->name }}">
+                            <a
+                                href="{{ route('product.show', $product->slug) }}"
+                                class="shop-product-image-link">
+                                <img
+                                    src="{{ asset('assets/images/products/Watch.jpg') }}"
+                                    alt="{{ $product->name }}">
+                            </a>
 
                             @endif
 
@@ -851,20 +1214,11 @@ Auth::guard('customer')->id()
 
                                     <!-- BUY NOW -->
 
-                                    <form
-                                        action="{{ route('buy.now', $product->id) }}"
-                                        method="POST">
-
-                                        @csrf
-
-
-                                        <button
-                                            type="submit"
-                                            class="shop-buy">
-                                            Buy Now
-                                        </button>
-
-                                    </form>
+                                    <a
+                                        href="{{ route('product.show', $product->slug) }}"
+                                        class="buy-now-btn">
+                                        <i class="fa-solid fa-bolt"></i> 
+                                    </a>
 
 
                                 </div>

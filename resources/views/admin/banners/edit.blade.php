@@ -338,7 +338,7 @@
                     <div class="current-image">
 
                         <img
-                            src="{{ asset('storage/' . $banner->image) }}"
+                            src="{{ asset('assets/images/banners/' . $banner->image) }}"
                             alt="{{ $banner->title }}"
                         >
 

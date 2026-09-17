@@ -764,7 +764,7 @@
             ],
 
             order: [
-                [0, 'asc']
+                [0, 'desc']
             ],
 
             columnDefs: [

@@ -8,13 +8,11 @@
 {{-- DataTables CSS --}}
 <link
     rel="stylesheet"
-    href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css"
->
+    href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
 @section('content')
 
 
 <style>
-
     /* =========================================================
        PAGE HEADER
     ========================================================= */
@@ -545,7 +543,6 @@
         }
 
     }
-
 </style>
 
 
@@ -570,8 +567,7 @@
 
     <a
         href="{{ route('admin.categories.create') }}"
-        class="add-btn"
-    >
+        class="add-btn">
         + Add Category
     </a>
 
@@ -603,241 +599,234 @@
     @if($categories->count())
 
 
-        <div class="table-wrapper">
+    <div class="table-wrapper">
 
 
-            <table
-                id="categoriesTable"
-                class="category-table display"
-                style="width:100%"
-            >
+        <table
+            id="categoriesTable"
+            class="category-table display"
+            style="width:100%">
 
-                <thead>
+            <thead>
 
-                    <tr>
+                <tr>
 
-                        <th>
-                            #
-                        </th>
+                    <th>
+                        #
+                    </th>
 
-                        <th>
-                            Image
-                        </th>
+                    <th>
+                        Image
+                    </th>
 
-                        <th>
-                            Category
-                        </th>
+                    <th>
+                        Category
+                    </th>
 
-                        <th>
-                            Slug
-                        </th>
+                    <th>
+                        Slug
+                    </th>
 
-                        <th>
-                            Status
-                        </th>
+                    <th>
+                        Status
+                    </th>
 
-                        <th>
-                            Created
-                        </th>
+                    <th>
+                        Created
+                    </th>
 
-                        <th>
-                            Actions
-                        </th>
+                    <th>
+                        Actions
+                    </th>
 
-                    </tr>
+                </tr>
 
-                </thead>
+            </thead>
 
 
-                <tbody>
+            <tbody>
 
 
-                    @foreach($categories as $category)
+                @foreach($categories as $category)
 
-                        <tr>
+                <tr>
 
 
-                            {{-- ID --}}
+                    {{-- ID --}}
 
-                            <td>
-                                {{ $category->id }}
-                            </td>
+                    <td>
+                        {{ $category->id }}
+                    </td>
 
 
-                            {{-- IMAGE --}}
+                    {{-- IMAGE --}}
 
-                            <td>
+                    <td>
 
-                                @if($category->image)
+                        @if($category->image)
 
-                                    <img
-                                        src="{{ asset('storage/' . $category->image) }}"
-                                        class="category-image"
-                                        alt="{{ $category->name }}"
-                                    >
+                        <img
+                            src="{{ asset('assets/images/category/' . $category->image) }}"
+                            class="category-image"
+                            alt="{{ $category->name }}">
 
-                                @else
+                        @else
 
-                                    <div class="no-image">
-                                        No Image
-                                    </div>
+                        <div class="no-image">
+                            No Image
+                        </div>
 
-                                @endif
+                        @endif
 
-                            </td>
+                    </td>
 
 
-                            {{-- CATEGORY --}}
+                    {{-- CATEGORY --}}
 
-                            <td>
+                    <td>
 
-                                <div class="category-name">
-                                    {{ $category->name }}
-                                </div>
+                        <div class="category-name">
+                            {{ $category->name }}
+                        </div>
 
 
-                                @if($category->description)
+                        @if($category->description)
 
-                                    <div class="category-description">
+                        <div class="category-description">
 
-                                        {{ Str::limit($category->description, 40) }}
+                            {{ Str::limit($category->description, 40) }}
 
-                                    </div>
+                        </div>
 
-                                @endif
+                        @endif
 
-                            </td>
+                    </td>
 
 
-                            {{-- SLUG --}}
+                    {{-- SLUG --}}
 
-                            <td>
-                                {{ $category->slug }}
-                            </td>
+                    <td>
+                        {{ $category->slug }}
+                    </td>
 
 
-                            {{-- STATUS --}}
+                    {{-- STATUS --}}
 
-                            <td>
+                    <td>
 
-                                @if($category->status)
+                        @if($category->status)
 
-                                    <span class="status-badge status-active">
-                                        Active
-                                    </span>
+                        <span class="status-badge status-active">
+                            Active
+                        </span>
 
-                                @else
+                        @else
 
-                                    <span class="status-badge status-inactive">
-                                        Inactive
-                                    </span>
+                        <span class="status-badge status-inactive">
+                            Inactive
+                        </span>
 
-                                @endif
+                        @endif
 
-                            </td>
+                    </td>
 
 
-                            {{-- CREATED --}}
+                    {{-- CREATED --}}
 
-                            <td data-order="{{ $category->created_at->timestamp }}">
+                    <td data-order="{{ $category->created_at->timestamp }}">
 
-                                {{ $category->created_at->format('d M Y') }}
+                        {{ $category->created_at->format('d M Y') }}
 
-                            </td>
+                    </td>
 
 
-                            {{-- ACTIONS --}}
+                    {{-- ACTIONS --}}
 
-                            <td>
+                    <td>
 
-                                <div class="action-wrapper">
+                        <div class="action-wrapper">
 
 
-                                    {{-- EDIT --}}
+                            {{-- EDIT --}}
 
-                                    <a
-                                        href="{{ route('admin.categories.edit', $category) }}"
-                                        class="action-btn edit-btn"
-                                    >
-                                        Edit
-                                    </a>
+                            <a
+                                href="{{ route('admin.categories.edit', $category) }}"
+                                class="action-btn edit-btn">
+                                Edit
+                            </a>
 
 
-                                    {{-- TOGGLE --}}
+                            {{-- TOGGLE --}}
 
-                                    <form
-                                        action="{{ route('admin.categories.toggle-status', $category) }}"
-                                        method="POST"
-                                    >
+                            <form
+                                action="{{ route('admin.categories.toggle-status', $category) }}"
+                                method="POST">
 
-                                        @csrf
+                                @csrf
 
-                                        @method('PATCH')
+                                @method('PATCH')
 
-                                        <button
-                                            type="submit"
-                                            class="action-btn toggle-btn"
-                                        >
-                                            Toggle
-                                        </button>
+                                <button
+                                    type="submit"
+                                    class="action-btn toggle-btn">
+                                    Toggle
+                                </button>
 
-                                    </form>
+                            </form>
 
 
-                                    {{-- DELETE --}}
+                            {{-- DELETE --}}
 
-                                    <form
-                                        action="{{ route('admin.categories.destroy', $category) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this category?')"
-                                    >
+                            <form
+                                action="{{ route('admin.categories.destroy', $category) }}"
+                                method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this category?')">
 
-                                        @csrf
+                                @csrf
 
-                                        @method('DELETE')
+                                @method('DELETE')
 
-                                        <button
-                                            type="submit"
-                                            class="action-btn delete-btn"
-                                        >
-                                            Delete
-                                        </button>
+                                <button
+                                    type="submit"
+                                    class="action-btn delete-btn">
+                                    Delete
+                                </button>
 
-                                    </form>
+                            </form>
 
 
-                                </div>
+                        </div>
 
-                            </td>
+                    </td>
 
 
-                        </tr>
+                </tr>
 
-                    @endforeach
+                @endforeach
 
 
-                </tbody>
+            </tbody>
 
-            </table>
+        </table>
 
 
-        </div>
+    </div>
 
 
     @else
 
 
-        <div class="empty-state">
+    <div class="empty-state">
 
-            <h3>
-                No Categories Found
-            </h3>
+        <h3>
+            No Categories Found
+        </h3>
 
-            <p>
-                Start by creating your first category.
-            </p>
+        <p>
+            Start by creating your first category.
+        </p>
 
-        </div>
+    </div>
 
 
     @endif
@@ -856,61 +845,58 @@
 {{-- DataTables JS --}}
 <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
 <script>
+    $(document).ready(function() {
 
-  $(document).ready(function () {
+        $('#categoriesTable').DataTable({
 
-    $('#categoriesTable').DataTable({
+            responsive: false,
+            autoWidth: false,
+            scrollX: true,
+            scrollCollapse: true,
 
-        responsive: false,
-        autoWidth: false,
-        scrollX: true,
-        scrollCollapse: true,
+            pageLength: 10,
 
-        pageLength: 10,
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
 
-        lengthMenu: [
-            [10, 25, 50, 100, -1],
-            [10, 25, 50, 100, "All"]
-        ],
+            order: [
+                [0, 'desc']
+            ],
 
-        order: [
-            [0, 'asc']
-        ],
+            columnDefs: [{
+                    orderable: false,
+                    searchable: false,
+                    targets: [1]
+                },
+                {
+                    orderable: false,
+                    searchable: false,
+                    targets: [6]
+                }
+            ],
 
-        columnDefs: [
-            {
-                orderable: false,
-                searchable: false,
-                targets: [1]
-            },
-            {
-                orderable: false,
-                searchable: false,
-                targets: [6]
+            language: {
+                search: "Search:",
+                lengthMenu: "Show _MENU_ entries",
+                info: "Showing _START_ to _END_ of _TOTAL_ categories",
+                infoEmpty: "Showing 0 to 0 of 0 categories",
+                infoFiltered: "(filtered from _MAX_ total categories)",
+                zeroRecords: "No matching categories found",
+                emptyTable: "No categories available",
+
+                paginate: {
+                    first: "First",
+                    last: "Last",
+                    previous: "Previous",
+                    next: "Next"
+                }
             }
-        ],
 
-        language: {
-            search: "Search:",
-            lengthMenu: "Show _MENU_ entries",
-            info: "Showing _START_ to _END_ of _TOTAL_ categories",
-            infoEmpty: "Showing 0 to 0 of 0 categories",
-            infoFiltered: "(filtered from _MAX_ total categories)",
-            zeroRecords: "No matching categories found",
-            emptyTable: "No categories available",
-
-            paginate: {
-                first: "First",
-                last: "Last",
-                previous: "Previous",
-                next: "Next"
-            }
-        }
+        });
 
     });
-
-});
-
 </script>
 
 

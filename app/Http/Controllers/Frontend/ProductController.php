@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /**
+     * Display products with filters, sorting and pagination.
+     */
     public function index(Request $request)
     {
         /*
@@ -274,6 +277,65 @@ class ProductController extends Controller
                 'products',
                 'categories',
                 'brands'
+            )
+        );
+    }
+
+
+    /**
+     * Display single product detail page.
+     */
+    public function show($slug)
+    {
+        /*
+        |--------------------------------------------------------------------------
+        | PRODUCT
+        |--------------------------------------------------------------------------
+        */
+
+        $product = Product::with([
+            'category',
+            'subCategory',
+            'brand',
+            'vendor',
+            'images',
+            'reviews'
+        ])
+        ->where('slug', $slug)
+        ->where('status', true)
+        ->firstOrFail();
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | RELATED PRODUCTS
+        |--------------------------------------------------------------------------
+        */
+
+        $relatedProducts = Product::with([
+            'category',
+            'brand',
+            'images'
+        ])
+        ->where('status', true)
+        ->where('id', '!=', $product->id)
+        ->where('category_id', $product->category_id)
+        ->latest()
+        ->take(4)
+        ->get();
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | VIEW
+        |--------------------------------------------------------------------------
+        */
+
+        return view(
+            'frontend.products.show',
+            compact(
+                'product',
+                'relatedProducts'
             )
         );
     }

@@ -401,7 +401,8 @@
 
 }
 .auth-error,
-.auth-success {
+.auth-success ,
+.auth-error-message{
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -414,7 +415,8 @@
     line-height: 1.5;
 }
 
-.auth-error {
+.auth-error ,
+.auth-error-message {
     background: #fff1f2;
     border: 1px solid #fecdd3;
     color: #be123c;

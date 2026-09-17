@@ -16,6 +16,30 @@ class HomeController extends Controller
     {
         /*
         |--------------------------------------------------------------------------
+        | ACTIVE BANNERS
+        |--------------------------------------------------------------------------
+        */
+
+        $banners = Banner::query()
+            ->where('status', true)
+
+            ->where(function ($query) {
+                $query->whereNull('start_at')
+                    ->orWhere('start_at', '<=', now());
+            })
+
+            ->where(function ($query) {
+                $query->whereNull('end_at')
+                    ->orWhere('end_at', '>=', now());
+            })
+
+            ->orderBy('sort_order', 'asc')
+            ->orderByDesc('id')
+            ->get();
+
+
+        /*
+        |--------------------------------------------------------------------------
         | FEATURED PRODUCTS
         |--------------------------------------------------------------------------
         */
@@ -77,10 +101,6 @@ class HomeController extends Controller
         |--------------------------------------------------------------------------
         | CUSTOMER WISHLIST
         |--------------------------------------------------------------------------
-        |
-        | Logged-in customer ke wishlist product IDs.
-        | Guest ke liye empty collection.
-        |
         */
 
         $wishlistProductIds = collect();
@@ -104,6 +124,7 @@ class HomeController extends Controller
         */
 
         return view('frontend.home.index', compact(
+            'banners',
             'featuredProducts',
             'latestProducts',
             'brands',

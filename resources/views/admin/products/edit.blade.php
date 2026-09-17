@@ -177,6 +177,86 @@ textarea.product-control {
     color:#374151;
 }
 
+
+/* Existing Gallery */
+
+.product-gallery {
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:12px;
+}
+
+.product-gallery-item {
+    width:125px;
+    border:1px solid #e5e7eb;
+    border-radius:9px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.product-gallery-image {
+    width:125px;
+    height:125px;
+    display:block;
+    object-fit:cover;
+}
+
+.product-gallery-delete {
+    padding:9px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:11px;
+    color:#dc3545;
+    background:#fff;
+}
+
+.product-gallery-delete input {
+    width:15px;
+    height:15px;
+    accent-color:#dc3545;
+}
+
+.product-gallery-empty {
+    color:#9ca3af;
+    font-size:12px;
+    margin-bottom:10px;
+}
+
+
+/* New Image Preview */
+
+.product-image-preview {
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:15px;
+}
+
+.product-preview-item {
+    width:90px;
+    height:90px;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.product-preview-item img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.product-image-help {
+    font-size:11px;
+    color:#6b7280;
+    margin-top:6px;
+}
+
+
 @media(max-width:700px) {
 
     .product-grid {
@@ -220,8 +300,11 @@ textarea.product-control {
     >
 
         @csrf
+
         @method('PUT')
 
+
+        {{-- PRODUCT INFORMATION --}}
 
         <div class="product-section">
             Product Information
@@ -283,10 +366,16 @@ textarea.product-control {
                     class="product-control"
                 >{{ old('description', $product->description) }}</textarea>
 
+                @error('description')
+                    <div class="product-error">{{ $message }}</div>
+                @enderror
+
             </div>
 
         </div>
 
+
+        {{-- CATEGORY --}}
 
         <div class="product-section">
             Category & Ownership
@@ -418,6 +507,8 @@ textarea.product-control {
         </div>
 
 
+        {{-- PRICING --}}
+
         <div class="product-section">
             Pricing & Stock
         </div>
@@ -441,6 +532,10 @@ textarea.product-control {
                     required
                 >
 
+                @error('price')
+                    <div class="product-error">{{ $message }}</div>
+                @enderror
+
             </div>
 
 
@@ -458,6 +553,10 @@ textarea.product-control {
                     class="product-control"
                     value="{{ old('sale_price', $product->sale_price) }}"
                 >
+
+                @error('sale_price')
+                    <div class="product-error">{{ $message }}</div>
+                @enderror
 
             </div>
 
@@ -477,15 +576,23 @@ textarea.product-control {
                     required
                 >
 
+                @error('stock')
+                    <div class="product-error">{{ $message }}</div>
+                @enderror
+
             </div>
 
         </div>
 
 
+        {{-- PRODUCT IMAGES --}}
+
         <div class="product-section">
-            Product Image
+            Product Images
         </div>
 
+
+        {{-- THUMBNAIL --}}
 
         <div class="product-group">
 
@@ -498,7 +605,7 @@ textarea.product-control {
                 <div class="product-current-image">
 
                     <img
-                        src="{{ asset('storage/' . $product->thumbnail) }}"
+                        src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
                         alt="{{ $product->name }}"
                     >
 
@@ -525,16 +632,127 @@ textarea.product-control {
                 accept=".jpg,.jpeg,.png,.webp"
             >
 
-            <div style="font-size:11px;color:#6b7280;margin-top:6px;">
+            <div class="product-image-help">
                 Leave empty to keep current image. Maximum 2MB.
             </div>
 
             @error('thumbnail')
-                <div class="product-error">{{ $message }}</div>
+                <div class="product-error">
+                    {{ $message }}
+                </div>
             @enderror
 
         </div>
 
+
+        {{-- EXISTING GALLERY --}}
+
+        <div class="product-group">
+
+            <label>
+                Existing Product Images
+            </label>
+
+
+            @if($product->images->count())
+
+                <div class="product-gallery">
+
+                    @foreach($product->images as $image)
+
+                        <div class="product-gallery-item">
+
+                            <img
+                                src="{{ asset('assets/images/products/' . $image->image) }}"
+                                alt="{{ $product->name }}"
+                                class="product-gallery-image"
+                            >
+
+
+                            <label class="product-gallery-delete">
+
+                                <input
+                                    type="checkbox"
+                                    name="delete_images[]"
+                                    value="{{ $image->id }}"
+                                >
+
+                                Delete Image
+
+                            </label>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+
+                <div class="product-image-help">
+                    Tick "Delete Image" for any image you want to remove.
+                </div>
+
+            @else
+
+                <div class="product-gallery-empty">
+                    No additional product images uploaded.
+                </div>
+
+            @endif
+
+
+            @error('delete_images')
+                <div class="product-error">
+                    {{ $message }}
+                </div>
+            @enderror
+
+        </div>
+
+
+        {{-- NEW GALLERY IMAGES --}}
+
+        <div class="product-group">
+
+            <label>
+                Add New Product Images
+            </label>
+
+            <input
+                type="file"
+                id="productImages"
+                name="images[]"
+                class="product-control product-file"
+                accept=".jpg,.jpeg,.png,.webp"
+                multiple
+            >
+
+            <div class="product-image-help">
+                Select multiple images. Maximum 10 images, 2MB each.
+            </div>
+
+            @error('images')
+                <div class="product-error">
+                    {{ $message }}
+                </div>
+            @enderror
+
+            @error('images.*')
+                <div class="product-error">
+                    {{ $message }}
+                </div>
+            @enderror
+
+
+            <div
+                id="productImagePreview"
+                class="product-image-preview"
+            ></div>
+
+        </div>
+
+
+        {{-- STATUS --}}
 
         <div class="product-section">
             Status
@@ -579,6 +797,8 @@ textarea.product-control {
         </div>
 
 
+        {{-- ACTIONS --}}
+
         <div class="product-actions">
 
             <a
@@ -597,8 +817,49 @@ textarea.product-control {
 
         </div>
 
+
     </form>
 
 </div>
+
+
+<script>
+
+document.getElementById('productImages').addEventListener('change', function(event) {
+
+    const preview = document.getElementById('productImagePreview');
+
+    preview.innerHTML = '';
+
+    const files = event.target.files;
+
+    Array.from(files).forEach(function(file) {
+
+        if (!file.type.startsWith('image/')) {
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            const item = document.createElement('div');
+
+            item.className = 'product-preview-item';
+
+            item.innerHTML = `
+                <img src="${e.target.result}" alt="Product Image">
+            `;
+
+            preview.appendChild(item);
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+});
+
+</script>
 
 @endsection

@@ -15,7 +15,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->get();
-        // $categories = Category::latest()->paginate(10);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -33,9 +32,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-         $request->merge([
-        'status' => $request->has('status') ? 1 : 0,
-    ]);
+        /*
+        |--------------------------------------------------------------------------
+        | Status
+        |--------------------------------------------------------------------------
+        */
+        $request->merge([
+            'status' => $request->has('status') ? 1 : 0,
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Validation
+        |--------------------------------------------------------------------------
+        */
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
@@ -43,13 +53,47 @@ class CategoryController extends Controller
             'status' => ['required', 'boolean'],
         ]);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Slug
+        |--------------------------------------------------------------------------
+        */
         $validated['slug'] = Str::slug($validated['name']);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Category Image Upload
+        |--------------------------------------------------------------------------
+        | Image will be stored in:
+        | public/assets/images/category
+        |
+        | Database will store only filename.
+        |--------------------------------------------------------------------------
+        */
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')
-                ->store('categories', 'public');
+
+            $image = $request->file('image');
+
+            // Create unique image name
+            $imageName = time() . '_' . Str::slug(
+                pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)
+            ) . '.' . $image->getClientOriginalExtension();
+
+            // Move image to public category folder
+            $image->move(
+                public_path('assets/images/category'),
+                $imageName
+            );
+
+            // Store only filename in database
+            $validated['image'] = $imageName;
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Create Category
+        |--------------------------------------------------------------------------
+        */
         Category::create($validated);
 
         return redirect()
@@ -70,24 +114,75 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-         $request->merge([
-        'status' => $request->has('status') ? 1 : 0,
-    ]);
-    
+        /*
+        |--------------------------------------------------------------------------
+        | Status
+        |--------------------------------------------------------------------------
+        */
+        $request->merge([
+            'status' => $request->has('status') ? 1 : 0,
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Validation
+        |--------------------------------------------------------------------------
+        */
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3048'],
             'status' => ['required', 'boolean'],
         ]);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Slug
+        |--------------------------------------------------------------------------
+        */
         $validated['slug'] = Str::slug($validated['name']);
 
+        /*
+        |--------------------------------------------------------------------------
+        | New Category Image
+        |--------------------------------------------------------------------------
+        */
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')
-                ->store('categories', 'public');
+
+            $image = $request->file('image');
+
+            // Delete old image if it exists
+            if (
+                !empty($category->image) &&
+                file_exists(
+                    public_path('assets/images/category/' . $category->image)
+                )
+            ) {
+                unlink(
+                    public_path('assets/images/category/' . $category->image)
+                );
+            }
+
+            // Create unique image name
+            $imageName = time() . '_' . Str::slug(
+                pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)
+            ) . '.' . $image->getClientOriginalExtension();
+
+            // Move new image
+            $image->move(
+                public_path('assets/images/category'),
+                $imageName
+            );
+
+            // Store only filename in database
+            $validated['image'] = $imageName;
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Update Category
+        |--------------------------------------------------------------------------
+        */
         $category->update($validated);
 
         return redirect()
@@ -100,6 +195,27 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        /*
+        |--------------------------------------------------------------------------
+        | Delete Category Image
+        |--------------------------------------------------------------------------
+        */
+        if (
+            !empty($category->image) &&
+            file_exists(
+                public_path('assets/images/category/' . $category->image)
+            )
+        ) {
+            unlink(
+                public_path('assets/images/category/' . $category->image)
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Delete Category
+        |--------------------------------------------------------------------------
+        */
         $category->delete();
 
         return redirect()

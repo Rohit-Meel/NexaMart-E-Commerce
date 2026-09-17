@@ -399,6 +399,18 @@
             }
 
         }
+         .sidebar-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
     </style>
 
     @stack('styles')
@@ -418,9 +430,11 @@
 
         <div class="sidebar-logo">
 
-            <h2>
-                Nexa<span>Mart</span>
-            </h2>
+          
+            <img
+                src="{{ asset('assets/images/logo/logo.png') }}"
+                alt="NexaMart">
+
 
         </div>
 

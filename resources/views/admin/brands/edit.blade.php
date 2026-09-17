@@ -247,7 +247,7 @@
                 <div class="brand-current-logo">
 
                     <img
-                        src="{{ asset('storage/' . $brand->logo) }}"
+                       src="{{ asset('assets/images/brand/' . $brand->logo) }}"
                         alt="{{ $brand->name }}"
                     >
 

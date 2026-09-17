@@ -214,7 +214,7 @@
                             @if($shop->shop_logo)
 
                                 <img
-                                    src="{{ asset('storage/' . $shop->shop_logo) }}"
+                                    src="{{ asset('assets/images/vendor/' . $shop->shop_logo) }}"
                                     alt="{{ $shop->shop_name }}"
                                 >
 

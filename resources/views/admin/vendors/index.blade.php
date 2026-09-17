@@ -464,7 +464,7 @@
                                 @if($vendor->shop_logo)
 
                                     <img
-                                        src="{{ asset('storage/' . $vendor->shop_logo) }}"
+                                        src="{{ asset('assets/images/vendor/' . $vendor->shop_logo) }}"
                                         alt="{{ $vendor->shop_name }}"
                                         class="vendor-shop-logo"
                                     >
@@ -669,7 +669,7 @@
 
             // ID ascending
             order: [
-                [0, 'asc']
+                [0, 'desc']
             ],
 
             columnDefs: [

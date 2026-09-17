@@ -388,7 +388,7 @@ table.dataTable.no-footer {
                             @if($product->thumbnail)
 
                                 <img
-                                    src="{{ asset('storage/' . $product->thumbnail) }}"
+                                     src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
                                     class="product-image"
                                     alt="{{ $product->name }}"
                                 >
@@ -618,7 +618,7 @@ $(document).ready(function () {
         ],
 
         order: [
-            [0, 'asc']
+            [0, 'desc']
         ],
 
         columnDefs: [

@@ -8,1120 +8,1277 @@
 
 
 <style>
-/* =========================================================
+    /* =========================================================
    OFFER WISHLIST - FORCE TOP RIGHT CORNER
 ========================================================= */
 
-.offer-image {
-    position: relative !important;
-}
+    .offer-image {
+        position: relative !important;
+    }
 
 
-/* FORM WRAPPER */
+    /* FORM WRAPPER */
 
-.offer-image .offer-wishlist-form {
-    position: absolute !important;
+    .offer-image .offer-wishlist-form {
+        position: absolute !important;
 
-    top: 12px !important;
-    right: 12px !important;
+        top: 12px !important;
+        right: 12px !important;
 
-    bottom: auto !important;
-    left: auto !important;
+        bottom: auto !important;
+        left: auto !important;
 
-    width: 40px !important;
-    height: 40px !important;
+        width: 40px !important;
+        height: 40px !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
 
-    display: block !important;
+        display: block !important;
 
-    z-index: 999 !important;
+        z-index: 999 !important;
 
-    transform: none !important;
-}
-
-
-/* WISHLIST BUTTON */
-
-.offer-image .offer-wishlist-form .offer-wishlist-btn {
-    position: absolute !important;
-
-    top: 0 !important;
-    right: 0 !important;
-
-    bottom: auto !important;
-    left: auto !important;
-
-    width: 40px !important;
-    height: 40px !important;
-
-    min-width: 40px !important;
-    min-height: 40px !important;
-
-    max-width: 40px !important;
-    max-height: 40px !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    display: flex !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    border-radius: 50% !important;
-
-    border: none !important;
-
-    text-decoration: none !important;
-
-    line-height: 1 !important;
-
-    transform: none !important;
-
-    z-index: 1000 !important;
-
-    box-sizing: border-box !important;
-}
+        transform: none !important;
+    }
 
 
-/* LOGIN WISHLIST - <a> */
+    /* WISHLIST BUTTON */
 
-.offer-image > .offer-wishlist-btn {
-    position: absolute !important;
+    .offer-image .offer-wishlist-form .offer-wishlist-btn {
+        position: absolute !important;
 
-    top: 12px !important;
-    right: 12px !important;
+        top: 0 !important;
+        right: 0 !important;
 
-    bottom: auto !important;
-    left: auto !important;
+        bottom: auto !important;
+        left: auto !important;
 
-    width: 40px !important;
-    height: 40px !important;
+        width: 40px !important;
+        height: 40px !important;
 
-    min-width: 40px !important;
-    min-height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
 
-    max-width: 40px !important;
-    max-height: 40px !important;
+        max-width: 40px !important;
+        max-height: 40px !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
 
-    display: flex !important;
+        display: flex !important;
 
-    align-items: center !important;
-    justify-content: center !important;
+        align-items: center !important;
+        justify-content: center !important;
 
-    border-radius: 50% !important;
+        border-radius: 50% !important;
 
-    text-decoration: none !important;
+        border: none !important;
 
-    z-index: 1000 !important;
+        text-decoration: none !important;
 
-    transform: none !important;
+        line-height: 1 !important;
 
-    box-sizing: border-box !important;
-}
+        transform: none !important;
 
+        z-index: 1000 !important;
 
-/* HEART ICON */
-
-.offer-image .offer-wishlist-btn i {
-    margin: 0 !important;
-    padding: 0 !important;
-
-    display: block !important;
-
-    line-height: 1 !important;
-
-    text-decoration: none !important;
-}
+        box-sizing: border-box !important;
+    }
 
 
-/* REMOVE UNDERLINE */
+    /* LOGIN WISHLIST - <a> */
 
-.offer-image .offer-wishlist-btn,
-.offer-image .offer-wishlist-btn:hover,
-.offer-image .offer-wishlist-btn:focus,
-.offer-image .offer-wishlist-btn:active {
-    text-decoration: none !important;
-}
-/* =========================================================
+    .offer-image>.offer-wishlist-btn {
+        position: absolute !important;
+
+        top: 12px !important;
+        right: 12px !important;
+
+        bottom: auto !important;
+        left: auto !important;
+
+        width: 40px !important;
+        height: 40px !important;
+
+        min-width: 40px !important;
+        min-height: 40px !important;
+
+        max-width: 40px !important;
+        max-height: 40px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        border-radius: 50% !important;
+
+        text-decoration: none !important;
+
+        z-index: 1000 !important;
+
+        transform: none !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* HEART ICON */
+
+    .offer-image .offer-wishlist-btn i {
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: block !important;
+
+        line-height: 1 !important;
+
+        text-decoration: none !important;
+    }
+
+
+    /* REMOVE UNDERLINE */
+
+    .offer-image .offer-wishlist-btn,
+    .offer-image .offer-wishlist-btn:hover,
+    .offer-image .offer-wishlist-btn:focus,
+    .offer-image .offer-wishlist-btn:active {
+        text-decoration: none !important;
+    }
+
+    /* =========================================================
    OFFERS PAGE
 ========================================================= */
 
-.offers-page {
-    width: 100%;
-    padding: 35px 0 60px;
-}
+    .offers-page {
+        width: 100%;
+        padding: 35px 0 60px;
+    }
 
-.offers-container {
-    width: 92%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+    .offers-container {
+        width: 92%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    BREADCRUMB
 ========================================================= */
 
-.offers-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 25px;
-    font-size: 13px;
-}
+    .offers-breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 25px;
+        font-size: 13px;
+    }
 
-.offers-breadcrumb a {
-    text-decoration: none !important;
-}
+    .offers-breadcrumb a {
+        text-decoration: none !important;
+    }
 
-.offers-breadcrumb i {
-    font-size: 11px;
-}
+    .offers-breadcrumb i {
+        font-size: 11px;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    HEADING
 ========================================================= */
 
-.offers-heading {
-    margin-bottom: 28px;
-}
+    .offers-heading {
+        margin-bottom: 28px;
+    }
 
-.offers-heading span {
-    display: inline-block;
-    margin-bottom: 8px;
+    .offers-heading span {
+        display: inline-block;
+        margin-bottom: 8px;
 
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
 
-.offers-heading h1 {
-    margin: 0 0 8px;
-    font-size: 36px;
-    line-height: 1.2;
-}
+    .offers-heading h1 {
+        margin: 0 0 8px;
+        font-size: 36px;
+        line-height: 1.2;
+    }
 
-.offers-heading strong {
-    font-weight: 800;
-}
+    .offers-heading strong {
+        font-weight: 800;
+    }
 
-.offers-heading p {
-    margin: 0;
-    font-size: 14px;
-}
+    .offers-heading p {
+        margin: 0;
+        font-size: 14px;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    OFFER BANNER
 ========================================================= */
 
-.offers-banner {
-    min-height: 210px;
+    .offers-banner {
+        min-height: 210px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    padding: 35px 45px;
+        padding: 35px 45px;
 
-    border-radius: 12px;
-    overflow: hidden;
+        border-radius: 12px;
+        overflow: hidden;
 
-    margin-bottom: 35px;
-}
+        margin-bottom: 35px;
+    }
 
-.offers-banner-content {
-    max-width: 650px;
-}
+    .offers-banner-content {
+        max-width: 650px;
+    }
 
-.offers-banner-content > span {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+    .offers-banner-content>span {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
 
-.offers-banner-content h2 {
-    margin: 10px 0;
-    font-size: 32px;
-    line-height: 1.15;
-}
+    .offers-banner-content h2 {
+        margin: 10px 0;
+        font-size: 32px;
+        line-height: 1.15;
+    }
 
-.offers-banner-content p {
-    margin: 0 0 18px;
-    font-size: 14px;
-}
+    .offers-banner-content p {
+        margin: 0 0 18px;
+        font-size: 14px;
+    }
 
-.offers-banner-content a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    .offers-banner-content a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
 
-    padding: 11px 20px;
+        padding: 11px 20px;
 
-    border-radius: 7px;
+        border-radius: 7px;
 
-    text-decoration: none !important;
-}
+        text-decoration: none !important;
+    }
 
-.offers-banner-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    .offers-banner-side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-    min-width: 150px;
-}
+        min-width: 150px;
+    }
 
-.offers-banner-side strong {
-    font-size: 14px;
-}
+    .offers-banner-side strong {
+        font-size: 14px;
+    }
 
-.offers-banner-side b {
-    font-size: 60px;
-    line-height: 1;
-}
+    .offers-banner-side b {
+        font-size: 60px;
+        line-height: 1;
+    }
 
-.offers-banner-side span {
-    font-size: 18px;
-    font-weight: 700;
-}
+    .offers-banner-side span {
+        font-size: 18px;
+        font-weight: 700;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    TOOLBAR
 ========================================================= */
 
-.offers-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    .offers-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    gap: 20px;
+        gap: 20px;
 
-    margin-bottom: 22px;
-}
+        margin-bottom: 22px;
+    }
 
-.offers-toolbar h2 {
-    margin: 0 0 5px;
-    font-size: 24px;
-}
+    .offers-toolbar h2 {
+        margin: 0 0 5px;
+        font-size: 24px;
+    }
 
-.offers-toolbar p {
-    margin: 0;
-    font-size: 13px;
-}
+    .offers-toolbar p {
+        margin: 0;
+        font-size: 13px;
+    }
 
-.offers-select {
-    min-width: 190px;
-    height: 42px;
+    .offers-select {
+        min-width: 190px;
+        height: 42px;
 
-    padding: 0 12px;
+        padding: 0 12px;
 
-    border-radius: 7px;
-    border: 1px solid #d8deea;
+        border-radius: 7px;
+        border: 1px solid #d8deea;
 
-    outline: none;
-}
+        outline: none;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    OFFERS GRID
 ========================================================= */
 
-.offers-grid {
-    display: grid;
+    .offers-grid {
+        display: grid;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
 
-    gap: 20px;
+        gap: 20px;
 
-    align-items: stretch;
-}
+        align-items: stretch;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    OFFER CARD
 ========================================================= */
 
-.offer-card {
-    min-width: 0;
+    .offer-card {
+        min-width: 0;
 
-    display: flex;
-    flex-direction: column;
+        display: flex;
+        flex-direction: column;
 
-    border-radius: 9px;
-    overflow: hidden;
+        border-radius: 9px;
+        overflow: hidden;
 
-    border: 1px solid #dce2ed;
+        border: 1px solid #dce2ed;
 
-    background: #ffffff;
+        background: #ffffff;
 
-    box-sizing: border-box;
-}
+        box-sizing: border-box;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    OFFER IMAGE
 ========================================================= */
 
-.offer-image {
-    position: relative;
+    .offer-image {
+        position: relative;
 
-    width: 100%;
-    height: 230px;
+        width: 100%;
+        height: 230px;
 
-    min-height: 230px;
+        min-height: 230px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    overflow: hidden;
+        overflow: hidden;
 
-    box-sizing: border-box;
-}
+        box-sizing: border-box;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | PRODUCT IMAGE
 |--------------------------------------------------------------------------
 */
 
-.offer-image > img {
-    width: 100% !important;
-    height: 100% !important;
+    .offer-image>img {
+        width: 100% !important;
+        height: 100% !important;
 
-    max-width: 100% !important;
-    max-height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
 
-    display: block !important;
+        display: block !important;
 
-    object-fit: contain !important;
-    object-position: center center !important;
+        object-fit: contain !important;
+        object-position: center center !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
 
-    box-sizing: border-box;
-}
+        box-sizing: border-box;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    OFFER BADGE
 ========================================================= */
 
-.offer-badge {
-    position: absolute;
+    .offer-badge {
+        position: absolute;
 
-    top: 12px;
-    left: 12px;
+        top: 12px;
+        left: 12px;
 
-    z-index: 10;
+        z-index: 10;
 
-    padding: 5px 9px;
+        padding: 5px 9px;
 
-    border-radius: 3px;
+        border-radius: 3px;
 
-    font-size: 10px;
-    font-weight: 700;
-}
+        font-size: 10px;
+        font-weight: 700;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    OFFER WISHLIST
 ========================================================= */
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | FORM
 |--------------------------------------------------------------------------
 */
 
-.offer-wishlist-form {
-    position: absolute !important;
+    .offer-wishlist-form {
+        position: absolute !important;
 
-    top: 12px !important;
-    right: 12px !important;
+        top: 12px !important;
+        right: 12px !important;
 
-    left: auto !important;
-    bottom: auto !important;
+        left: auto !important;
+        bottom: auto !important;
 
-    width: auto !important;
-    height: auto !important;
+        width: auto !important;
+        height: auto !important;
 
-    min-width: 0 !important;
-    max-width: none !important;
+        min-width: 0 !important;
+        max-width: none !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
 
-    display: block !important;
+        display: block !important;
 
-    z-index: 30 !important;
+        z-index: 30 !important;
 
-    float: none !important;
+        float: none !important;
 
-    transform: none !important;
-}
+        transform: none !important;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | BUTTON + LOGIN LINK
 |--------------------------------------------------------------------------
 */
 
-.offer-wishlist-btn {
-    width: 40px !important;
-    height: 40px !important;
+    .offer-wishlist-btn {
+        width: 40px !important;
+        height: 40px !important;
 
-    min-width: 40px !important;
-    max-width: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
 
-    min-height: 40px !important;
-    max-height: 40px !important;
+        min-height: 40px !important;
+        max-height: 40px !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
 
-    border: none !important;
-    outline: none !important;
+        border: none !important;
+        outline: none !important;
 
-    border-radius: 50% !important;
+        border-radius: 50% !important;
 
-    text-decoration: none !important;
+        text-decoration: none !important;
 
-    line-height: 1 !important;
+        line-height: 1 !important;
 
-    box-sizing: border-box !important;
+        box-sizing: border-box !important;
 
-    cursor: pointer;
+        cursor: pointer;
 
-    flex: 0 0 40px !important;
-}
+        flex: 0 0 40px !important;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | REMOVE GLOBAL UNDERLINE
 |--------------------------------------------------------------------------
 */
 
-.offer-wishlist-btn,
-.offer-wishlist-btn:hover,
-.offer-wishlist-btn:focus,
-.offer-wishlist-btn:active {
-    text-decoration: none !important;
-}
+    .offer-wishlist-btn,
+    .offer-wishlist-btn:hover,
+    .offer-wishlist-btn:focus,
+    .offer-wishlist-btn:active {
+        text-decoration: none !important;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | HEART ICON
 |--------------------------------------------------------------------------
 */
 
-.offer-wishlist-btn i {
-    display: block !important;
+    .offer-wishlist-btn i {
+        display: block !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
 
-    line-height: 1 !important;
+        line-height: 1 !important;
 
-    text-decoration: none !important;
-}
+        text-decoration: none !important;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    OFFER INFO
 ========================================================= */
 
-.offer-info {
-    flex: 1;
+    .offer-info {
+        flex: 1;
 
-    display: flex;
-    flex-direction: column;
+        display: flex;
+        flex-direction: column;
 
-    padding: 14px;
-}
+        padding: 14px;
+    }
 
-.offer-category {
-    display: block;
+    .offer-category {
+        display: block;
 
-    margin-bottom: 5px;
+        margin-bottom: 5px;
 
-    font-size: 10px;
-    font-weight: 700;
-}
+        font-size: 10px;
+        font-weight: 700;
+    }
 
-.offer-info h3 {
-    margin: 0 0 7px;
+    .offer-info h3 {
+        margin: 0 0 7px;
 
-    font-size: 15px;
-    line-height: 1.3;
-}
+        font-size: 15px;
+        line-height: 1.3;
+    }
 
-.offer-brand {
-    display: block;
+    .offer-brand {
+        display: block;
 
-    margin-bottom: 8px;
+        margin-bottom: 8px;
 
-    font-size: 12px;
-}
+        font-size: 12px;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    RATING
 ========================================================= */
 
-.offer-rating {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    .offer-rating {
+        display: flex;
+        align-items: center;
+        gap: 6px;
 
-    margin-bottom: 7px;
-}
+        margin-bottom: 7px;
+    }
 
-.offer-rating span {
-    font-size: 13px;
-}
+    .offer-rating span {
+        font-size: 13px;
+    }
 
-.offer-rating small {
-    font-size: 10px;
-}
+    .offer-rating small {
+        font-size: 10px;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    PRICE
 ========================================================= */
 
-.offer-price {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    .offer-price {
+        display: flex;
+        align-items: center;
+        gap: 8px;
 
-    margin-bottom: 12px;
-}
+        margin-bottom: 12px;
+    }
 
-.offer-price strong {
-    font-size: 16px;
-}
+    .offer-price strong {
+        font-size: 16px;
+    }
 
-.offer-price del {
-    font-size: 10px;
-}
+    .offer-price del {
+        font-size: 10px;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    ACTIONS
 ========================================================= */
 
-.offer-actions {
-    width: 100%;
+    .offer-actions {
+        width: 100%;
 
-    display: flex;
-    align-items: center;
+        display: flex;
+        align-items: center;
 
-    gap: 8px;
+        gap: 8px;
 
-    margin-top: auto;
+        margin-top: auto;
 
-    box-sizing: border-box;
-}
+        box-sizing: border-box;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | CART FORM
 |--------------------------------------------------------------------------
 */
 
-.offer-cart-form {
-    width: 42px !important;
-    min-width: 42px !important;
+    .offer-cart-form {
+        width: 42px !important;
+        min-width: 42px !important;
 
-    height: 38px !important;
+        height: 38px !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
 
-    flex: 0 0 42px !important;
-}
+        flex: 0 0 42px !important;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | CART BUTTON
 |--------------------------------------------------------------------------
 */
 
-.offer-cart-btn {
-    width: 42px !important;
-    height: 38px !important;
+    .offer-cart-btn {
+        width: 42px !important;
+        height: 38px !important;
 
-    min-width: 42px !important;
+        min-width: 42px !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
 
-    border-radius: 6px !important;
+        border-radius: 6px !important;
 
-    line-height: 1 !important;
+        line-height: 1 !important;
 
-    text-decoration: none !important;
+        text-decoration: none !important;
 
-    box-sizing: border-box !important;
+        box-sizing: border-box !important;
 
-    cursor: pointer;
-}
+        cursor: pointer;
+    }
 
-.offer-cart-btn i {
-    margin: 0 !important;
-    padding: 0 !important;
+    .offer-cart-btn i {
+        margin: 0 !important;
+        padding: 0 !important;
 
-    line-height: 1 !important;
-}
+        line-height: 1 !important;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | BUY NOW FORM
 |--------------------------------------------------------------------------
 */
 
-.offer-buy-form {
-    margin: 0 !important;
-    padding: 0 !important;
+    .offer-buy-form {
+        margin: 0 !important;
+        padding: 0 !important;
 
-    flex: 1 1 auto !important;
+        flex: 1 1 auto !important;
 
-    width: auto !important;
+        width: auto !important;
 
-    height: 38px !important;
+        height: 38px !important;
 
-    min-width: 0 !important;
+        min-width: 0 !important;
 
-    display: flex !important;
-}
+        display: flex !important;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | BUY NOW BUTTON
 |--------------------------------------------------------------------------
 */
 
-.offer-buy-btn {
-    width: 100% !important;
-    height: 38px !important;
+    .offer-buy-btn {
+        width: 100% !important;
+        height: 38px !important;
 
-    min-height: 38px !important;
+        min-height: 38px !important;
 
-    margin: 0 !important;
-    padding: 0 12px !important;
+        margin: 0 !important;
+        padding: 0 12px !important;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
 
-    border: none !important;
+        border: none !important;
 
-    border-radius: 6px !important;
+        border-radius: 6px !important;
 
-    line-height: 1 !important;
+        line-height: 1 !important;
 
-    text-align: center !important;
+        text-align: center !important;
 
-    text-decoration: none !important;
+        text-decoration: none !important;
 
-    cursor: pointer;
+        cursor: pointer;
 
-    box-sizing: border-box !important;
-}
+        box-sizing: border-box !important;
+    }
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | LOGIN BUY NOW
 |--------------------------------------------------------------------------
 */
 
-a.offer-buy-btn {
-    text-decoration: none !important;
-}
+    a.offer-buy-btn {
+        text-decoration: none !important;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    SHOP DEAL
 ========================================================= */
 
-.offer-deal-btn {
-    width: 100%;
+    .offer-deal-btn {
+        width: 100%;
 
-    height: 34px;
+        height: 34px;
 
-    margin-top: 8px;
+        margin-top: 8px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    gap: 7px;
+        gap: 7px;
 
-    border-radius: 5px;
+        border-radius: 5px;
 
-    text-decoration: none !important;
+        text-decoration: none !important;
 
-    font-size: 11px;
+        font-size: 11px;
 
-    box-sizing: border-box;
-}
+        box-sizing: border-box;
+    }
 
-.offer-deal-btn:hover {
-    text-decoration: none !important;
-}
+    .offer-deal-btn:hover {
+        text-decoration: none !important;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    NO RESULT
 ========================================================= */
 
-.offers-no-result {
-    min-height: 220px;
+    .offers-no-result {
+        min-height: 220px;
 
-    display: flex;
-    flex-direction: column;
+        display: flex;
+        flex-direction: column;
 
-    align-items: center;
-    justify-content: center;
+        align-items: center;
+        justify-content: center;
 
-    text-align: center;
+        text-align: center;
 
-    padding: 30px;
+        padding: 30px;
 
-    border: 1px dashed #d8deea;
-    border-radius: 10px;
-}
+        border: 1px dashed #d8deea;
+        border-radius: 10px;
+    }
 
-.offers-no-result i {
-    font-size: 35px;
+    .offers-no-result i {
+        font-size: 35px;
 
-    margin-bottom: 12px;
-}
+        margin-bottom: 12px;
+    }
 
-.offers-no-result h3 {
-    margin: 0 0 6px;
-}
+    .offers-no-result h3 {
+        margin: 0 0 6px;
+    }
 
-.offers-no-result p {
-    margin: 0 0 15px;
-}
+    .offers-no-result p {
+        margin: 0 0 15px;
+    }
 
-.offers-no-result a {
-    text-decoration: none !important;
-}
+    .offers-no-result a {
+        text-decoration: none !important;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    COUPONS
 ========================================================= */
 
-.offers-coupons {
-    margin-top: 45px;
-}
+    .offers-coupons {
+        margin-top: 45px;
+    }
 
-.offers-coupons-heading {
-    margin-bottom: 20px;
-}
+    .offers-coupons-heading {
+        margin-bottom: 20px;
+    }
 
-.offers-coupons-heading span {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+    .offers-coupons-heading span {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
 
-.offers-coupons-heading h2 {
-    margin: 6px 0;
+    .offers-coupons-heading h2 {
+        margin: 6px 0;
 
-    font-size: 25px;
-}
+        font-size: 25px;
+    }
 
-.offers-coupons-heading p {
-    margin: 0;
+    .offers-coupons-heading p {
+        margin: 0;
 
-    font-size: 13px;
-}
+        font-size: 13px;
+    }
 
-.offers-coupons-grid {
-    display: grid;
+    .offers-coupons-grid {
+        display: grid;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
 
-    gap: 15px;
-}
+        gap: 15px;
+    }
 
-.offer-coupon-card {
-    display: flex;
-    align-items: center;
+    .offer-coupon-card {
+        display: flex;
+        align-items: center;
 
-    gap: 12px;
+        gap: 12px;
 
-    padding: 15px;
+        padding: 15px;
 
-    border: 1px solid #dce2ed;
-    border-radius: 8px;
-}
+        border: 1px solid #dce2ed;
+        border-radius: 8px;
+    }
 
-.offer-coupon-icon {
-    width: 40px;
-    height: 40px;
+    .offer-coupon-icon {
+        width: 40px;
+        height: 40px;
 
-    min-width: 40px;
+        min-width: 40px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    border-radius: 50%;
-}
+        border-radius: 50%;
+    }
 
-.offer-coupon-info {
-    flex: 1;
-    min-width: 0;
-}
+    .offer-coupon-info {
+        flex: 1;
+        min-width: 0;
+    }
 
-.offer-coupon-info h3 {
-    margin: 0 0 4px;
-}
+    .offer-coupon-info h3 {
+        margin: 0 0 4px;
+    }
 
-.offer-coupon-info p {
-    margin: 0 0 4px;
+    .offer-coupon-info p {
+        margin: 0 0 4px;
 
-    font-size: 12px;
-}
+        font-size: 12px;
+    }
 
-.offer-coupon-info small {
-    font-size: 10px;
-}
+    .offer-coupon-info small {
+        font-size: 10px;
+    }
 
-.offer-copy-btn {
-    height: 34px;
+    .offer-copy-btn {
+        height: 34px;
 
-    padding: 0 12px;
+        padding: 0 12px;
 
-    border: none;
+        border: none;
 
-    border-radius: 5px;
+        border-radius: 5px;
 
-    cursor: pointer;
-}
+        cursor: pointer;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    BOTTOM CTA
 ========================================================= */
 
-.offers-cta {
-    margin-top: 45px;
+    .offers-cta {
+        margin-top: 45px;
 
-    padding: 30px;
+        padding: 30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    gap: 20px;
+        gap: 20px;
 
-    border-radius: 10px;
-}
+        border-radius: 10px;
+    }
 
-.offers-cta span {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+    .offers-cta span {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
 
-.offers-cta h2 {
-    margin: 7px 0;
+    .offers-cta h2 {
+        margin: 7px 0;
 
-    font-size: 25px;
-}
+        font-size: 25px;
+    }
 
-.offers-cta p {
-    margin: 0;
+    .offers-cta p {
+        margin: 0;
 
-    font-size: 13px;
-}
+        font-size: 13px;
+    }
 
-.offers-cta > a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .offers-cta>a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    gap: 8px;
+        gap: 8px;
 
-    padding: 12px 20px;
+        padding: 12px 20px;
 
-    border-radius: 6px;
+        border-radius: 6px;
 
-    text-decoration: none !important;
+        text-decoration: none !important;
 
-    white-space: nowrap;
-}
+        white-space: nowrap;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    TOAST
 ========================================================= */
 
-.offer-ajax-toast {
-    position: fixed;
+    .offer-ajax-toast {
+        position: fixed;
 
-    top: 20px;
-    left: 50%;
+        top: 20px;
+        left: 50%;
 
-    transform: translate(-50%, -20px);
+        transform: translate(-50%, -20px);
 
-    z-index: 99999;
+        z-index: 99999;
 
-    min-width: 280px;
-    max-width: 90%;
+        min-width: 280px;
+        max-width: 90%;
 
-    padding: 13px 18px;
+        padding: 13px 18px;
 
-    display: flex;
-    align-items: center;
+        display: flex;
+        align-items: center;
 
-    gap: 10px;
+        gap: 10px;
 
-    border-radius: 7px;
+        border-radius: 7px;
 
-    opacity: 0;
+        opacity: 0;
 
-    pointer-events: none;
+        pointer-events: none;
 
-    transition:
-        opacity .25s ease,
-        transform .25s ease;
+        transition:
+            opacity .25s ease,
+            transform .25s ease;
 
-    box-sizing: border-box;
-}
+        box-sizing: border-box;
+    }
 
-.offer-ajax-toast.show {
-    opacity: 1;
+    .offer-ajax-toast.show {
+        opacity: 1;
 
-    transform: translate(-50%, 0);
-}
+        transform: translate(-50%, 0);
+    }
 
-.offer-ajax-toast i {
-    font-size: 16px;
-}
+    .offer-ajax-toast i {
+        font-size: 16px;
+    }
 
-.offer-ajax-toast span {
-    font-size: 13px;
-}
+    .offer-ajax-toast span {
+        font-size: 13px;
+    }
 
 
-/* =========================================================
+    /* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 900px) {
+    @media (max-width: 900px) {
 
-    .offers-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        .offers-grid {
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+        }
+
+        .offers-coupons-grid {
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+        }
+
     }
 
-    .offers-coupons-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+
+    @media (max-width: 600px) {
+
+        .offers-container {
+            width: 94%;
+        }
+
+        .offers-heading h1 {
+            font-size: 28px;
+        }
+
+        .offers-banner {
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            padding: 25px;
+        }
+
+        .offers-banner-side {
+            align-self: flex-end;
+        }
+
+        .offers-toolbar {
+            flex-direction: column;
+
+            align-items: stretch;
+        }
+
+        .offers-select {
+            width: 100%;
+        }
+
+        .offers-grid {
+            grid-template-columns: 1fr;
+
+            gap: 16px;
+        }
+
+        .offers-coupons-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .offers-cta {
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+        .offer-image {
+            height: 240px;
+
+            min-height: 240px;
+        }
+
+    }
+
+    /* =========================================
+   BUY NOW BUTTON
+   ========================================= */
+
+.buy-now-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 35px;
+
+    padding: 0 9px;
+
+    border: 0;
+    border-radius: 4px;
+
+    background: #FF7A00;
+    color: #ffffff !important;
+
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+
+    text-align: center;
+    text-decoration: none !important;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.buy-now-btn:hover {
+    background: #D8001B;
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 3px 8px rgba(216, 0, 27, 0.20);
+}
+
+
+/* =========================================
+   ACTIVE / CLICK
+   ========================================= */
+
+.buy-now-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+
+/* =========================================
+   FOCUS
+   ========================================= */
+
+.buy-now-btn:focus {
+    outline: none;
+    color: #ffffff !important;
+}
+
+
+/* =========================================
+   DISABLED
+   ========================================= */
+
+.buy-now-btn:disabled,
+.buy-now-btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 991px) {
+
+    .buy-now-btn {
+        height: 35px;
+        padding: 0 9px;
+
+        font-size: 10px;
+        border-radius: 4px;
     }
 
 }
 
 
-@media (max-width: 600px) {
+/* =========================================
+   MOBILE
+   ========================================= */
 
-    .offers-container {
-        width: 94%;
-    }
+@media (max-width: 767px) {
 
-    .offers-heading h1 {
-        font-size: 28px;
-    }
-
-    .offers-banner {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        padding: 25px;
-    }
-
-    .offers-banner-side {
-        align-self: flex-end;
-    }
-
-    .offers-toolbar {
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .offers-select {
+    .buy-now-btn {
         width: 100%;
-    }
+        height: 36px;
 
-    .offers-grid {
-        grid-template-columns: 1fr;
+        padding: 0 10px;
 
-        gap: 16px;
-    }
+        font-size: 10px;
+        font-weight: 700;
 
-    .offers-coupons-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .offers-cta {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    .offer-image {
-        height: 240px;
-
-        min-height: 240px;
+        border-radius: 4px;
     }
 
 }
 
 
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    .buy-now-btn {
+        height: 35px;
+
+        padding: 0 8px;
+
+        font-size: 9px;
+        border-radius: 4px;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL DEVICES
+   ========================================= */
+
+@media (max-width: 360px) {
+
+    .buy-now-btn {
+        height: 34px;
+
+        padding: 0 7px;
+
+        font-size: 9px;
+    }
+
+}
 </style>
 
 
@@ -1131,30 +1288,30 @@ a.offer-buy-btn {
 
 @if(session('success'))
 
-    <div class="home-alert home-alert-success">
+<div class="home-alert home-alert-success">
 
-        <i class="fa-solid fa-circle-check"></i>
+    <i class="fa-solid fa-circle-check"></i>
 
-        <span>
-            {{ session('success') }}
-        </span>
+    <span>
+        {{ session('success') }}
+    </span>
 
-    </div>
+</div>
 
 @endif
 
 
 @if(session('error'))
 
-    <div class="home-alert home-alert-error">
+<div class="home-alert home-alert-error">
 
-        <i class="fa-solid fa-circle-exclamation"></i>
+    <i class="fa-solid fa-circle-exclamation"></i>
 
-        <span>
-            {{ session('error') }}
-        </span>
+    <span>
+        {{ session('error') }}
+    </span>
 
-    </div>
+</div>
 
 @endif
 
@@ -1286,8 +1443,7 @@ a.offer-buy-btn {
 
             <select
                 class="offers-select"
-                id="offerCategoryFilter"
-            >
+                id="offerCategoryFilter">
 
                 <option value="all">
                     All Offers
@@ -1296,11 +1452,11 @@ a.offer-buy-btn {
 
                 @foreach($categories as $category)
 
-                    <option value="{{ $category->slug }}">
+                <option value="{{ $category->slug }}">
 
-                        {{ $category->name }}
+                    {{ $category->name }}
 
-                    </option>
+                </option>
 
                 @endforeach
 
@@ -1316,415 +1472,398 @@ a.offer-buy-btn {
         @if($offerProducts->count())
 
 
+        <div
+            class="offers-grid"
+            id="offersGrid">
+
+
+            @foreach($offerProducts as $product)
+
+
+            @php
+
+            $sellingPrice =
+            $product->sale_price;
+
+            $discount =
+            round(
+            (
+            ($product->price - $product->sale_price)
+            / $product->price
+            ) * 100
+            );
+
+            $reviewCount =
+            $product->reviews->count();
+
+            @endphp
+
+
             <div
-                class="offers-grid"
-                id="offersGrid"
-            >
+                class="offer-card"
+                data-category="{{ $product->category->slug ?? '' }}">
 
 
-                @foreach($offerProducts as $product)
+                <!-- =================================================
+                             IMAGE
+                        ================================================== -->
+
+                <div class="offer-image">
+
+
+                    <!-- OFFER BADGE -->
+
+                    <span class="offer-badge">
+
+                        {{ $discount }}% OFF
+
+                    </span>
+
+
+                    <!-- =================================================
+                                 WISHLIST
+                            ================================================== -->
+
+                    @auth('customer')
 
 
                     @php
 
-                        $sellingPrice =
-                            $product->sale_price;
-
-                        $discount =
-                            round(
-                                (
-                                    ($product->price - $product->sale_price)
-                                    / $product->price
-                                ) * 100
-                            );
-
-                        $reviewCount =
-                            $product->reviews->count();
+                    $isWishlisted =
+                    auth('customer')
+                    ->user()
+                    ->wishlists()
+                    ->where(
+                    'product_id',
+                    $product->id
+                    )
+                    ->exists();
 
                     @endphp
 
 
-                    <div
-                        class="offer-card"
-                        data-category="{{ $product->category->slug ?? '' }}"
-                    >
+                    @if($isWishlisted)
 
 
-                        <!-- =================================================
-                             IMAGE
-                        ================================================== -->
+                    <form
+                        action="{{ route('wishlist.remove', $product->id) }}"
+                        method="POST"
+                        class="offer-wishlist-form">
 
-                        <div class="offer-image">
+                        @csrf
 
-
-                            <!-- OFFER BADGE -->
-
-                            <span class="offer-badge">
-
-                                {{ $discount }}% OFF
-
-                            </span>
+                        @method('DELETE')
 
 
-                            <!-- =================================================
-                                 WISHLIST
-                            ================================================== -->
+                        <button
+                            type="submit"
+                            class="offer-wishlist-btn active"
+                            title="Remove from Wishlist">
 
-                            @auth('customer')
+                            <i class="fa-solid fa-heart"></i>
 
+                        </button>
 
-                                @php
-
-                                    $isWishlisted =
-                                        auth('customer')
-                                            ->user()
-                                            ->wishlists()
-                                            ->where(
-                                                'product_id',
-                                                $product->id
-                                            )
-                                            ->exists();
-
-                                @endphp
+                    </form>
 
 
-                                @if($isWishlisted)
+                    @else
 
 
-                                    <form
-                                        action="{{ route('wishlist.remove', $product->id) }}"
-                                        method="POST"
-                                        class="offer-wishlist-form"
-                                    >
+                    <form
+                        action="{{ route('wishlist.add', $product->id) }}"
+                        method="POST"
+                        class="offer-wishlist-form">
 
-                                        @csrf
-
-                                        @method('DELETE')
+                        @csrf
 
 
-                                        <button
-                                            type="submit"
-                                            class="offer-wishlist-btn active"
-                                            title="Remove from Wishlist"
-                                        >
+                        <button
+                            type="submit"
+                            class="offer-wishlist-btn"
+                            title="Add to Wishlist">
 
-                                            <i class="fa-solid fa-heart"></i>
+                            <i class="fa-regular fa-heart"></i>
 
-                                        </button>
+                        </button>
 
-                                    </form>
-
-
-                                @else
+                    </form>
 
 
-                                    <form
-                                        action="{{ route('wishlist.add', $product->id) }}"
-                                        method="POST"
-                                        class="offer-wishlist-form"
-                                    >
-
-                                        @csrf
+                    @endif
 
 
-                                        <button
-                                            type="submit"
-                                            class="offer-wishlist-btn"
-                                            title="Add to Wishlist"
-                                        >
-
-                                            <i class="fa-regular fa-heart"></i>
-
-                                        </button>
-
-                                    </form>
+                    @else
 
 
-                                @endif
+                    <a
+                        href="{{ route('login') }}"
+                        class="offer-wishlist-btn"
+                        title="Login to add Wishlist">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                    </a>
 
 
-                            @else
+                    @endauth
 
 
-                                <a
-                                    href="{{ route('login') }}"
-                                    class="offer-wishlist-btn"
-                                    title="Login to add Wishlist"
-                                >
-
-                                    <i class="fa-regular fa-heart"></i>
-
-                                </a>
-
-
-                            @endauth
-
-
-                            <!-- =================================================
+                    <!-- =================================================
                                  PRODUCT IMAGE
                             ================================================== -->
 
-                            @if($product->thumbnail)
+                    @if($product->thumbnail)
 
-                                <img
-                                    src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
-                                    alt="{{ $product->name }}"
-                                >
+                    <img
+                        src="{{ asset('assets/images/products/' . $product->thumbnail) }}"
+                        alt="{{ $product->name }}">
 
-                            @else
+                    @else
 
-                                <img
-                                    src="{{ asset('assets/images/logo/banner.png') }}"
-                                    alt="{{ $product->name }}"
-                                >
+                    <img
+                        src="{{ asset('assets/images/logo/banner.png') }}"
+                        alt="{{ $product->name }}">
 
-                            @endif
+                    @endif
 
 
-                        </div>
+                </div>
 
 
-                        <!-- =================================================
+                <!-- =================================================
                              PRODUCT INFO
                         ================================================== -->
 
-                        <div class="offer-info">
+                <div class="offer-info">
 
 
-                            @if($product->category)
+                    @if($product->category)
 
-                                <span class="offer-category">
+                    <span class="offer-category">
 
-                                    {{ $product->category->name }}
+                        {{ $product->category->name }}
 
-                                </span>
+                    </span>
 
-                            @endif
-
-
-                            <h3>
-
-                                {{ $product->name }}
-
-                            </h3>
+                    @endif
 
 
-                            @if($product->brand)
+                    <h3>
 
-                                <small class="offer-brand">
+                        {{ $product->name }}
 
-                                    {{ $product->brand->name }}
-
-                                </small>
-
-                            @endif
+                    </h3>
 
 
-                            <!-- RATING -->
+                    @if($product->brand)
 
-                            <div class="offer-rating">
+                    <small class="offer-brand">
 
-                                <span>
-                                    ★★★★★
-                                </span>
+                        {{ $product->brand->name }}
 
-                                <small>
-                                    ({{ $reviewCount }})
-                                </small>
+                    </small>
 
-                            </div>
+                    @endif
 
 
-                            <!-- PRICE -->
+                    <!-- RATING -->
 
-                            <div class="offer-price">
+                    <div class="offer-rating">
 
-                                <strong>
+                        <span>
+                            ★★★★★
+                        </span>
 
-                                    ₹{{ number_format($sellingPrice, 2) }}
+                        <small>
+                            ({{ $reviewCount }})
+                        </small>
 
-                                </strong>
-
-
-                                <del>
-
-                                    ₹{{ number_format($product->price, 2) }}
-
-                                </del>
-
-                            </div>
+                    </div>
 
 
-                            <!-- =================================================
+                    <!-- PRICE -->
+
+                    <div class="offer-price">
+
+                        <strong>
+
+                            ₹{{ number_format($sellingPrice, 2) }}
+
+                        </strong>
+
+
+                        <del>
+
+                            ₹{{ number_format($product->price, 2) }}
+
+                        </del>
+
+                    </div>
+
+
+                    <!-- =================================================
                                  ACTIONS
                             ================================================== -->
 
-                            <div class="offer-actions">
+                    <div class="offer-actions">
 
 
-                                @auth('customer')
+                        @auth('customer')
 
 
-                                    <!-- ADD TO CART -->
+                        <!-- ADD TO CART -->
 
-                                    <form
-                                        action="{{ route('cart.add', $product->id) }}"
-                                        method="POST"
-                                        class="offer-cart-form"
-                                    >
+                        <form
+                            action="{{ route('cart.add', $product->id) }}"
+                            method="POST"
+                            class="offer-cart-form">
 
-                                        @csrf
-
-
-                                        <button
-                                            type="submit"
-                                            class="offer-cart-btn"
-                                            title="Add to Cart"
-                                        >
-
-                                            <i class="fa-solid fa-cart-shopping"></i>
-
-                                        </button>
-
-                                    </form>
+                            @csrf
 
 
-                                    <!-- BUY NOW -->
+                            <button
+                                type="submit"
+                                class="offer-cart-btn"
+                                title="Add to Cart">
 
-                                    <form
-                                        action="{{ route('buy.now', $product->id) }}"
-                                        method="POST"
-                                        class="offer-buy-form"
-                                    >
+                                <i class="fa-solid fa-cart-shopping"></i>
 
-                                        @csrf
+                            </button>
 
-
-                                        <button
-                                            type="submit"
-                                            class="offer-buy-btn"
-                                        >
-
-                                            Buy Now
-
-                                        </button>
-
-                                    </form>
+                        </form>
 
 
-                                @else
+                        {{-- BUY NOW --}}
+
+                        @auth('customer')
+
+                        <a
+                            href="{{ route('product.show', $product->slug) }}"
+                            class="buy-now-btn">
+                            Buy Now
+                        </a>
+
+                        @else
+
+                        <a
+                            href="{{ route('login') }}"
+                            class="buy-now-btn">
+                            Buy Now
+                        </a>
+
+                        @endauth
 
 
-                                    <!-- LOGIN CART -->
-
-                                    <a
-                                        href="{{ route('login') }}"
-                                        class="offer-cart-btn"
-                                        title="Login to Add to Cart"
-                                    >
-
-                                        <i class="fa-solid fa-cart-shopping"></i>
-
-                                    </a>
+                        @else
 
 
-                                    <!-- LOGIN BUY NOW -->
+                        <!-- LOGIN CART -->
 
-                                    <a
-                                        href="{{ route('login') }}"
-                                        class="offer-buy-btn"
-                                    >
+                        <a
+                            href="{{ route('login') }}"
+                            class="offer-cart-btn"
+                            title="Login to Add to Cart">
 
-                                        Buy Now
+                            <i class="fa-solid fa-cart-shopping"></i>
 
-                                    </a>
-
-
-                                @endauth
+                        </a>
 
 
-                            </div>
+                        <!-- LOGIN BUY NOW -->
+
+                        <a
+                            href="{{ route('login') }}"
+                            class="offer-buy-btn">
+
+                            Buy Now
+
+                        </a>
 
 
-                            <!-- =================================================
-                                 SHOP DEAL
-                            ================================================== -->
-
-                            <a
-                                href="{{ route('products', ['search' => $product->name]) }}"
-                                class="offer-deal-btn"
-                            >
-
-                                Shop Deal
-
-                                <i class="fa-solid fa-arrow-right"></i>
-
-                            </a>
-
-
-                        </div>
+                        @endauth
 
 
                     </div>
 
 
-                @endforeach
+                    <!-- =================================================
+                                 SHOP DEAL
+                            ================================================== -->
+
+                    <a
+                        href="{{ route('products', ['search' => $product->name]) }}"
+                        class="offer-deal-btn">
+
+                        Shop Deal
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+
+                </div>
 
 
             </div>
 
 
-            <!-- =====================================================
+            @endforeach
+
+
+        </div>
+
+
+        <!-- =====================================================
                  NO FILTER RESULT
             ====================================================== -->
 
-            <div
-                class="offers-no-result"
-                id="offersNoResult"
-                style="display:none;"
-            >
+        <div
+            class="offers-no-result"
+            id="offersNoResult"
+            style="display:none;">
 
-                <i class="fa-solid fa-box-open"></i>
+            <i class="fa-solid fa-box-open"></i>
 
-                <h3>
-                    No Offers Found
-                </h3>
+            <h3>
+                No Offers Found
+            </h3>
 
-                <p>
-                    There are no offers available in this category.
-                </p>
+            <p>
+                There are no offers available in this category.
+            </p>
 
-            </div>
+        </div>
 
 
         @else
 
 
-            <!-- =====================================================
+        <!-- =====================================================
                  NO OFFERS
             ====================================================== -->
 
-            <div class="offers-no-result">
+        <div class="offers-no-result">
 
-                <i class="fa-solid fa-tags"></i>
+            <i class="fa-solid fa-tags"></i>
 
-                <h3>
-                    No Offers Available
-                </h3>
+            <h3>
+                No Offers Available
+            </h3>
 
-                <p>
-                    There are currently no discounted products.
-                </p>
+            <p>
+                There are currently no discounted products.
+            </p>
 
-                <a href="{{ route('products') }}">
+            <a href="{{ route('products') }}">
 
-                    Browse Products
+                Browse Products
 
-                    <i class="fa-solid fa-arrow-right"></i>
+                <i class="fa-solid fa-arrow-right"></i>
 
-                </a>
+            </a>
 
-            </div>
+        </div>
 
 
         @endif
@@ -1737,55 +1876,55 @@ a.offer-buy-btn {
         @if($coupons->count())
 
 
-            <section class="offers-coupons">
+        <section class="offers-coupons">
 
 
-                <div class="offers-coupons-heading">
+            <div class="offers-coupons-heading">
 
-                    <span>
-                        EXTRA SAVINGS
-                    </span>
+                <span>
+                    EXTRA SAVINGS
+                </span>
 
-                    <h2>
-                        Available <strong>Coupons</strong>
-                    </h2>
+                <h2>
+                    Available <strong>Coupons</strong>
+                </h2>
 
-                    <p>
-                        Use these coupons at checkout
-                        to save even more.
-                    </p>
+                <p>
+                    Use these coupons at checkout
+                    to save even more.
+                </p>
 
-                </div>
-
-
-                <div class="offers-coupons-grid">
+            </div>
 
 
-                    @foreach($coupons as $coupon)
+            <div class="offers-coupons-grid">
 
 
-                        <div class="offer-coupon-card">
+                @foreach($coupons as $coupon)
 
 
-                            <div class="offer-coupon-icon">
-
-                                <i class="fa-solid fa-ticket"></i>
-
-                            </div>
+                <div class="offer-coupon-card">
 
 
-                            <div class="offer-coupon-info">
+                    <div class="offer-coupon-icon">
 
-                                <h3>
+                        <i class="fa-solid fa-ticket"></i>
 
-                                    {{ $coupon->code }}
-
-                                </h3>
+                    </div>
 
 
-                                <p>
+                    <div class="offer-coupon-info">
 
-                                    {{
+                        <h3>
+
+                            {{ $coupon->code }}
+
+                        </h3>
+
+
+                        <p>
+
+                            {{
                                         $coupon->description
                                         ?: (
                                             $coupon->discount_type === 'percentage'
@@ -1794,47 +1933,46 @@ a.offer-buy-btn {
                                         )
                                     }}
 
-                                </p>
+                        </p>
 
 
-                                @if($coupon->minimum_order_amount > 0)
+                        @if($coupon->minimum_order_amount > 0)
 
-                                    <small>
+                        <small>
 
-                                        Min. order:
-                                        ₹{{ number_format($coupon->minimum_order_amount, 2) }}
+                            Min. order:
+                            ₹{{ number_format($coupon->minimum_order_amount, 2) }}
 
-                                    </small>
+                        </small>
 
-                                @endif
-
-
-                            </div>
+                        @endif
 
 
-                            <button
-                                type="button"
-                                class="offer-copy-btn"
-                                data-code="{{ $coupon->code }}"
-                            >
-
-                                <i class="fa-regular fa-copy"></i>
-
-                                Copy
-
-                            </button>
+                    </div>
 
 
-                        </div>
+                    <button
+                        type="button"
+                        class="offer-copy-btn"
+                        data-code="{{ $coupon->code }}">
 
+                        <i class="fa-regular fa-copy"></i>
 
-                    @endforeach
+                        Copy
+
+                    </button>
 
 
                 </div>
 
 
-            </section>
+                @endforeach
+
+
+            </div>
+
+
+        </section>
 
 
         @endif
@@ -1887,242 +2025,239 @@ a.offer-buy-btn {
 ========================================================= -->
 
 <script>
-
-document.addEventListener(
-    'DOMContentLoaded',
-    function () {
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | CATEGORY FILTER
-        |--------------------------------------------------------------------------
-        */
-
-        const categoryFilter =
-            document.querySelector(
-                '#offerCategoryFilter'
-            );
+    document.addEventListener(
+        'DOMContentLoaded',
+        function() {
 
 
-        const offerCards =
+            /*
+            |--------------------------------------------------------------------------
+            | CATEGORY FILTER
+            |--------------------------------------------------------------------------
+            */
+
+            const categoryFilter =
+                document.querySelector(
+                    '#offerCategoryFilter'
+                );
+
+
+            const offerCards =
+                document.querySelectorAll(
+                    '.offer-card'
+                );
+
+
+            const noResult =
+                document.querySelector(
+                    '#offersNoResult'
+                );
+
+
+            if (categoryFilter) {
+
+                categoryFilter.addEventListener(
+                    'change',
+                    function() {
+
+
+                        const selectedCategory =
+                            this.value;
+
+
+                        let visibleCount =
+                            0;
+
+
+                        offerCards.forEach(
+                            function(card) {
+
+
+                                const cardCategory =
+                                    card.dataset.category;
+
+
+                                if (
+                                    selectedCategory === 'all' ||
+                                    selectedCategory === cardCategory
+                                ) {
+
+
+                                    card.style.display =
+                                        '';
+
+
+                                    visibleCount++;
+
+
+                                } else {
+
+
+                                    card.style.display =
+                                        'none';
+
+                                }
+
+                            }
+                        );
+
+
+                        if (noResult) {
+
+                            noResult.style.display =
+                                visibleCount === 0 ?
+                                'flex' :
+                                'none';
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | COPY COUPON
+            |--------------------------------------------------------------------------
+            */
+
             document.querySelectorAll(
-                '.offer-card'
-            );
+                '.offer-copy-btn'
+            ).forEach(
+                function(button) {
 
 
-        const noResult =
-            document.querySelector(
-                '#offersNoResult'
-            );
+                    button.addEventListener(
+                        'click',
+                        async function() {
 
 
-        if (categoryFilter) {
-
-            categoryFilter.addEventListener(
-                'change',
-                function () {
+                            const code =
+                                button.dataset.code;
 
 
-                    const selectedCategory =
-                        this.value;
+                            try {
 
 
-                    let visibleCount =
-                        0;
+                                await navigator.clipboard.writeText(
+                                    code
+                                );
 
 
-                    offerCards.forEach(
-                        function (card) {
+                                const originalHTML =
+                                    button.innerHTML;
 
 
-                            const cardCategory =
-                                card.dataset.category;
+                                button.innerHTML =
+                                    '<i class="fa-solid fa-check"></i> Copied';
 
 
-                            if (
-                                selectedCategory === 'all' ||
-                                selectedCategory === cardCategory
-                            ) {
+                                button.disabled =
+                                    true;
 
 
-                                card.style.display =
-                                    '';
+                                setTimeout(
+                                    function() {
 
 
-                                visibleCount++;
+                                        button.innerHTML =
+                                            originalHTML;
 
 
-                            } else {
+                                        button.disabled =
+                                            false;
 
 
-                                card.style.display =
-                                    'none';
+                                    },
+                                    1500
+                                );
+
+
+                            } catch (error) {
+
+
+                                console.error(
+                                    'Coupon Copy Error:',
+                                    error
+                                );
 
                             }
 
                         }
                     );
 
-
-                    if (noResult) {
-
-                        noResult.style.display =
-                            visibleCount === 0
-                            ? 'flex'
-                            : 'none';
-
-                    }
-
                 }
             );
 
-        }
+
+            /*
+            |--------------------------------------------------------------------------
+            | ADD TO CART AJAX
+            |--------------------------------------------------------------------------
+            */
+
+            document.querySelectorAll(
+                '.offer-cart-form'
+            ).forEach(
+                function(form) {
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | COPY COUPON
-        |--------------------------------------------------------------------------
-        */
-
-        document.querySelectorAll(
-            '.offer-copy-btn'
-        ).forEach(
-            function (button) {
+                    form.addEventListener(
+                        'submit',
+                        async function(event) {
 
 
-                button.addEventListener(
-                    'click',
-                    async function () {
+                            event.preventDefault();
 
 
-                        const code =
-                            button.dataset.code;
+                            const button =
+                                form.querySelector(
+                                    'button[type="submit"]'
+                                );
 
 
-                        try {
+                            if (!button) {
+
+                                return;
+
+                            }
 
 
-                            await navigator.clipboard.writeText(
-                                code
-                            );
+                            if (
+                                button.dataset.loading ===
+                                'true'
+                            ) {
+
+                                return;
+
+                            }
 
 
                             const originalHTML =
                                 button.innerHTML;
 
 
-                            button.innerHTML =
-                                '<i class="fa-solid fa-check"></i> Copied';
+                            button.dataset.loading =
+                                'true';
 
 
                             button.disabled =
                                 true;
 
 
-                            setTimeout(
-                                function () {
+                            try {
 
 
-                                    button.innerHTML =
-                                        originalHTML;
+                                const response =
+                                    await fetch(
+                                        form.action, {
+                                            method: 'POST',
 
+                                            headers: {
 
-                                    button.disabled =
-                                        false;
-
-
-                                },
-                                1500
-                            );
-
-
-                        } catch (error) {
-
-
-                            console.error(
-                                'Coupon Copy Error:',
-                                error
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | ADD TO CART AJAX
-        |--------------------------------------------------------------------------
-        */
-
-        document.querySelectorAll(
-            '.offer-cart-form'
-        ).forEach(
-            function (form) {
-
-
-                form.addEventListener(
-                    'submit',
-                    async function (event) {
-
-
-                        event.preventDefault();
-
-
-                        const button =
-                            form.querySelector(
-                                'button[type="submit"]'
-                            );
-
-
-                        if (!button) {
-
-                            return;
-
-                        }
-
-
-                        if (
-                            button.dataset.loading ===
-                            'true'
-                        ) {
-
-                            return;
-
-                        }
-
-
-                        const originalHTML =
-                            button.innerHTML;
-
-
-                        button.dataset.loading =
-                            'true';
-
-
-                        button.disabled =
-                            true;
-
-
-                        try {
-
-
-                            const response =
-                                await fetch(
-                                    form.action,
-                                    {
-                                        method: 'POST',
-
-                                        headers: {
-
-                                            'X-CSRF-TOKEN':
-                                                document
+                                                'X-CSRF-TOKEN': document
                                                     .querySelector(
                                                         'meta[name="csrf-token"]'
                                                     )
@@ -2130,413 +2265,405 @@ document.addEventListener(
                                                         'content'
                                                     ),
 
-                                            'Accept':
-                                                'application/json',
+                                                'Accept': 'application/json',
 
-                                            'X-Requested-With':
-                                                'XMLHttpRequest'
+                                                'X-Requested-With': 'XMLHttpRequest'
 
-                                        },
+                                            },
 
-                                        body:
-                                            new FormData(
+                                            body: new FormData(
                                                 form
                                             )
 
-                                    }
-                                );
-
-
-                            const data =
-                                await response.json();
-
-
-                            if (
-                                !response.ok ||
-                                !data.success
-                            ) {
-
-
-                                throw new Error(
-                                    data.message ||
-                                    'Unable to add product to cart.'
-                                );
-
-                            }
-
-
-                            button.innerHTML =
-                                '<i class="fa-solid fa-check"></i>';
-
-
-                            showOfferToast(
-                                data.message ||
-                                'Product added to cart.',
-                                'success'
-                            );
-
-
-                            setTimeout(
-                                function () {
-
-
-                                    button.innerHTML =
-                                        originalHTML;
-
-
-                                    button.disabled =
-                                        false;
-
-
-                                    button.dataset.loading =
-                                        'false';
-
-
-                                },
-                                1200
-                            );
-
-
-                        } catch (error) {
-
-
-                            console.error(
-                                'Offer Cart Error:',
-                                error
-                            );
-
-
-                            showOfferToast(
-                                error.message ||
-                                'Something went wrong.',
-                                'error'
-                            );
-
-
-                            button.innerHTML =
-                                originalHTML;
-
-
-                            button.disabled =
-                                false;
-
-
-                            button.dataset.loading =
-                                'false';
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | WISHLIST AJAX
-        |--------------------------------------------------------------------------
-        */
-
-        document.querySelectorAll(
-            '.offer-wishlist-form'
-        ).forEach(
-            function (form) {
-
-
-                form.addEventListener(
-                    'submit',
-                    async function (event) {
-
-
-                        event.preventDefault();
-
-
-                        const button =
-                            form.querySelector(
-                                'button[type="submit"]'
-                            );
-
-
-                        if (!button) {
-
-                            return;
-
-                        }
-
-
-                        if (
-                            button.dataset.loading ===
-                            'true'
-                        ) {
-
-                            return;
-
-                        }
-
-
-                        const originalHTML =
-                            button.innerHTML;
-
-
-                        const isRemove =
-                            form.querySelector(
-                                'input[name="_method"]'
-                            )?.value === 'DELETE';
-
-
-                        button.dataset.loading =
-                            'true';
-
-
-                        button.disabled =
-                            true;
-
-
-                        try {
-
-
-                            const response =
-                                await fetch(
-                                    form.action,
-                                    {
-
-                                        method: 'POST',
-
-                                        headers: {
-
-                                            'X-CSRF-TOKEN':
-                                                document
-                                                    .querySelector(
-                                                        'meta[name="csrf-token"]'
-                                                    )
-                                                    .getAttribute(
-                                                        'content'
-                                                    ),
-
-                                            'Accept':
-                                                'application/json',
-
-                                            'X-Requested-With':
-                                                'XMLHttpRequest'
-
-                                        },
-
-                                        body:
-                                            new FormData(
-                                                form
-                                            )
-
-                                    }
-                                );
-
-
-                            const data =
-                                await response.json();
-
-
-                            if (
-                                !response.ok ||
-                                !data.success
-                            ) {
-
-
-                                throw new Error(
-                                    data.message ||
-                                    'Unable to update wishlist.'
-                                );
-
-                            }
-
-
-                            if (isRemove) {
-
-
-                                button.classList.remove(
-                                    'active'
-                                );
-
-
-                                button.innerHTML =
-                                    '<i class="fa-regular fa-heart"></i>';
-
-
-                                button.title =
-                                    'Add to Wishlist';
-
-
-                                form.action =
-                                    form.action.replace(
-                                        '/wishlist/remove/',
-                                        '/wishlist/add/'
+                                        }
                                     );
 
 
-                                const methodInput =
-                                    form.querySelector(
-                                        'input[name="_method"]'
+                                const data =
+                                    await response.json();
+
+
+                                if (
+                                    !response.ok ||
+                                    !data.success
+                                ) {
+
+
+                                    throw new Error(
+                                        data.message ||
+                                        'Unable to add product to cart.'
                                     );
-
-
-                                if (methodInput) {
-
-                                    methodInput.remove();
 
                                 }
 
 
-                            } else {
+                                button.innerHTML =
+                                    '<i class="fa-solid fa-check"></i>';
 
 
-                                button.classList.add(
-                                    'active'
+                                showOfferToast(
+                                    data.message ||
+                                    'Product added to cart.',
+                                    'success'
+                                );
+
+
+                                setTimeout(
+                                    function() {
+
+
+                                        button.innerHTML =
+                                            originalHTML;
+
+
+                                        button.disabled =
+                                            false;
+
+
+                                        button.dataset.loading =
+                                            'false';
+
+
+                                    },
+                                    1200
+                                );
+
+
+                            } catch (error) {
+
+
+                                console.error(
+                                    'Offer Cart Error:',
+                                    error
+                                );
+
+
+                                showOfferToast(
+                                    error.message ||
+                                    'Something went wrong.',
+                                    'error'
                                 );
 
 
                                 button.innerHTML =
-                                    '<i class="fa-solid fa-heart"></i>';
+                                    originalHTML;
 
 
-                                button.title =
-                                    'Remove from Wishlist';
+                                button.disabled =
+                                    false;
 
 
-                                let methodInput =
-                                    form.querySelector(
-                                        'input[name="_method"]'
+                                button.dataset.loading =
+                                    'false';
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | WISHLIST AJAX
+            |--------------------------------------------------------------------------
+            */
+
+            document.querySelectorAll(
+                '.offer-wishlist-form'
+            ).forEach(
+                function(form) {
+
+
+                    form.addEventListener(
+                        'submit',
+                        async function(event) {
+
+
+                            event.preventDefault();
+
+
+                            const button =
+                                form.querySelector(
+                                    'button[type="submit"]'
+                                );
+
+
+                            if (!button) {
+
+                                return;
+
+                            }
+
+
+                            if (
+                                button.dataset.loading ===
+                                'true'
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            const originalHTML =
+                                button.innerHTML;
+
+
+                            const isRemove =
+                                form.querySelector(
+                                    'input[name="_method"]'
+                                )?.value === 'DELETE';
+
+
+                            button.dataset.loading =
+                                'true';
+
+
+                            button.disabled =
+                                true;
+
+
+                            try {
+
+
+                                const response =
+                                    await fetch(
+                                        form.action, {
+
+                                            method: 'POST',
+
+                                            headers: {
+
+                                                'X-CSRF-TOKEN': document
+                                                    .querySelector(
+                                                        'meta[name="csrf-token"]'
+                                                    )
+                                                    .getAttribute(
+                                                        'content'
+                                                    ),
+
+                                                'Accept': 'application/json',
+
+                                                'X-Requested-With': 'XMLHttpRequest'
+
+                                            },
+
+                                            body: new FormData(
+                                                form
+                                            )
+
+                                        }
                                     );
 
 
-                                if (!methodInput) {
+                                const data =
+                                    await response.json();
 
 
-                                    methodInput =
-                                        document.createElement(
-                                            'input'
+                                if (
+                                    !response.ok ||
+                                    !data.success
+                                ) {
+
+
+                                    throw new Error(
+                                        data.message ||
+                                        'Unable to update wishlist.'
+                                    );
+
+                                }
+
+
+                                if (isRemove) {
+
+
+                                    button.classList.remove(
+                                        'active'
+                                    );
+
+
+                                    button.innerHTML =
+                                        '<i class="fa-regular fa-heart"></i>';
+
+
+                                    button.title =
+                                        'Add to Wishlist';
+
+
+                                    form.action =
+                                        form.action.replace(
+                                            '/wishlist/remove/',
+                                            '/wishlist/add/'
                                         );
 
 
-                                    methodInput.type =
-                                        'hidden';
+                                    const methodInput =
+                                        form.querySelector(
+                                            'input[name="_method"]'
+                                        );
 
 
-                                    methodInput.name =
-                                        '_method';
+                                    if (methodInput) {
+
+                                        methodInput.remove();
+
+                                    }
 
 
-                                    form.appendChild(
-                                        methodInput
+                                } else {
+
+
+                                    button.classList.add(
+                                        'active'
                                     );
+
+
+                                    button.innerHTML =
+                                        '<i class="fa-solid fa-heart"></i>';
+
+
+                                    button.title =
+                                        'Remove from Wishlist';
+
+
+                                    let methodInput =
+                                        form.querySelector(
+                                            'input[name="_method"]'
+                                        );
+
+
+                                    if (!methodInput) {
+
+
+                                        methodInput =
+                                            document.createElement(
+                                                'input'
+                                            );
+
+
+                                        methodInput.type =
+                                            'hidden';
+
+
+                                        methodInput.name =
+                                            '_method';
+
+
+                                        form.appendChild(
+                                            methodInput
+                                        );
+
+                                    }
+
+
+                                    methodInput.value =
+                                        'DELETE';
+
+
+                                    form.action =
+                                        form.action.replace(
+                                            '/wishlist/add/',
+                                            '/wishlist/remove/'
+                                        );
 
                                 }
 
 
-                                methodInput.value =
-                                    'DELETE';
+                                showOfferToast(
+                                    data.message ||
+                                    'Wishlist updated.',
+                                    'success'
+                                );
 
 
-                                form.action =
-                                    form.action.replace(
-                                        '/wishlist/add/',
-                                        '/wishlist/remove/'
-                                    );
+                                button.disabled =
+                                    false;
+
+
+                                button.dataset.loading =
+                                    'false';
+
+
+                            } catch (error) {
+
+
+                                console.error(
+                                    'Offer Wishlist Error:',
+                                    error
+                                );
+
+
+                                showOfferToast(
+                                    error.message ||
+                                    'Something went wrong.',
+                                    'error'
+                                );
+
+
+                                button.innerHTML =
+                                    originalHTML;
+
+
+                                button.disabled =
+                                    false;
+
+
+                                button.dataset.loading =
+                                    'false';
 
                             }
 
-
-                            showOfferToast(
-                                data.message ||
-                                'Wishlist updated.',
-                                'success'
-                            );
-
-
-                            button.disabled =
-                                false;
-
-
-                            button.dataset.loading =
-                                'false';
-
-
-                        } catch (error) {
-
-
-                            console.error(
-                                'Offer Wishlist Error:',
-                                error
-                            );
-
-
-                            showOfferToast(
-                                error.message ||
-                                'Something went wrong.',
-                                'error'
-                            );
-
-
-                            button.innerHTML =
-                                originalHTML;
-
-
-                            button.disabled =
-                                false;
-
-
-                            button.dataset.loading =
-                                'false';
-
                         }
+                    );
 
-                    }
-                );
-
-            }
-        );
+                }
+            );
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | OFFER TOAST
-        |--------------------------------------------------------------------------
-        */
+            /*
+            |--------------------------------------------------------------------------
+            | OFFER TOAST
+            |--------------------------------------------------------------------------
+            */
 
-        function showOfferToast(
-            message,
-            type
-        ) {
-
-
-            const oldToast =
-                document.querySelector(
-                    '.offer-ajax-toast'
-                );
+            function showOfferToast(
+                message,
+                type
+            ) {
 
 
-            if (oldToast) {
-
-                oldToast.remove();
-
-            }
-
-
-            const toast =
-                document.createElement(
-                    'div'
-                );
+                const oldToast =
+                    document.querySelector(
+                        '.offer-ajax-toast'
+                    );
 
 
-            toast.className =
-                'offer-ajax-toast ' +
-                (
-                    type === 'success'
-                    ? 'success'
-                    : 'error'
-                );
+                if (oldToast) {
+
+                    oldToast.remove();
+
+                }
 
 
-            toast.innerHTML = `
+                const toast =
+                    document.createElement(
+                        'div'
+                    );
+
+
+                toast.className =
+                    'offer-ajax-toast ' +
+                    (
+                        type === 'success' ?
+                        'success' :
+                        'error'
+                    );
+
+
+                toast.innerHTML = `
                 <i class="${
                     type === 'success'
                         ? 'fa-solid fa-circle-check'
@@ -2549,53 +2676,52 @@ document.addEventListener(
             `;
 
 
-            document.body.appendChild(
-                toast
-            );
+                document.body.appendChild(
+                    toast
+                );
 
 
-            requestAnimationFrame(
-                function () {
+                requestAnimationFrame(
+                    function() {
 
 
-                    toast.classList.add(
-                        'show'
-                    );
+                        toast.classList.add(
+                            'show'
+                        );
 
-                }
-            );
-
-
-            setTimeout(
-                function () {
+                    }
+                );
 
 
-                    toast.classList.remove(
-                        'show'
-                    );
+                setTimeout(
+                    function() {
 
 
-                    setTimeout(
-                        function () {
+                        toast.classList.remove(
+                            'show'
+                        );
 
 
-                            toast.remove();
-
-                        },
-                        350
-                    );
+                        setTimeout(
+                            function() {
 
 
-                },
-                2500
-            );
+                                toast.remove();
+
+                            },
+                            350
+                        );
+
+
+                    },
+                    2500
+                );
+
+            }
+
 
         }
-
-
-    }
-);
-
+    );
 </script>
 
 
